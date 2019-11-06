@@ -1,16 +1,16 @@
 package core.game;
 import core.game_engine.Sprite;
-import core.game_engine.input_commands.MoveAble;
+import core.game_engine.input_commands.InputController;
 import core.game_engine.physics.BoxCollider2D;
 import core.game_engine.physics.PhysicsComponent;
 import processing.core.PApplet;
 import processing.core.PVector;
-import core.game_engine.GameObject;
 
-public class Player extends Sprite implements MoveAble {
+public class Player extends Sprite {
     public PVector size;
 
     private PhysicsComponent physicsComponent;
+    private InputController playerInput;
     private float acceleration = 2f;
     public Player(PApplet p, int x, int y, int w, int h) {
         super(p, x, y, w, h);
@@ -32,25 +32,9 @@ public class Player extends Sprite implements MoveAble {
         parent.popMatrix();
     }
 
-    @Override
-    public void moveLeft() {
-        //System.out.println("left?");
-        //this.position.x -= 1;
-        physicsComponent.setVelocity(-acceleration, 0);
+    public void move(){
+        //playerInput.mousePressed();
+        physicsComponent.setVelocity(parent.mouseX, parent.mouseY);
     }
 
-    @Override
-    public void moveRight() {
-        physicsComponent.setVelocity(acceleration, 0);
-    }
-
-    @Override
-    public void moveUp() {
-        physicsComponent.setVelocity(0, -acceleration);
-    }
-
-    @Override
-    public void moveDown() {
-        physicsComponent.setVelocity(0, acceleration);
-    }
 }

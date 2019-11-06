@@ -9,9 +9,9 @@ public abstract class GameObject {
     public PVector position;
     public PVector next_position;
     protected ArrayList<Component> componentList = new ArrayList<>();
-    public GameObject(){
-
-    }
+//    public GameObject(){
+//
+//    }
     public GameObject(PApplet p){
         this.parent = p;
         this.position = new PVector(0,0,0);

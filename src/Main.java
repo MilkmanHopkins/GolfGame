@@ -1,29 +1,31 @@
-import core.game.TestGame;
+import core.game.GolfGame;
 import processing.core.PApplet;
 public class Main extends PApplet {
     private int WIDTH = 600, HEIGHT = 400;
-    private TestGame testGame;
+    private GolfGame golfGame;
     public void settings(){
         size(WIDTH, HEIGHT);
     }
     public void setup(){
         background(0);
-        testGame = new TestGame(this);
-        testGame.start();
+        golfGame = new GolfGame(this);
+        golfGame.start();
     }
     public void draw(){
-        background(0);
-        testGame.update();
+        background(255);
+        golfGame.update();
+        if(mousePressed){
+            line(mouseX,mouseY, golfGame.player.position.x , golfGame.player.position.y);
+
+        }
 
     }
     public static void main(String args[]){
-        //System.out.println("Welcome to L5");
         PApplet.main("Main");
     }
-    public void keyReleased(){
-        testGame.keyReleased(key, keyCode);
+
+    public void mouseReleased(){
+        golfGame.player.move();
     }
-    public void keyPressed(){
-        testGame.keyPressed(key, keyCode);
-    }
+
 }
