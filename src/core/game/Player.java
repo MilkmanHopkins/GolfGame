@@ -24,6 +24,8 @@ public class Player extends Sprite {
     @Override
     public void update() {
         super.update();
+        //playerInput.mousePressed(parent.mouseX, parent.mouseY, this.position.x, this.position.y);
+
         parent.pushMatrix();
         // platform rectangle
         parent.rectMode(PApplet.CENTER);
@@ -34,7 +36,7 @@ public class Player extends Sprite {
 
     public void move(){
         //playerInput.mousePressed();
-        physicsComponent.setVelocity(parent.mouseX, parent.mouseY);
+        physicsComponent.setVelocity(playerInput.location.x , playerInput.location.y);
     }
 
 }

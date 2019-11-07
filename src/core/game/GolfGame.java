@@ -1,16 +1,19 @@
 package core.game;
 import core.game_engine.GameManager;
+import core.game_engine.input_commands.InputController;
 import processing.core.PApplet;
 public class GolfGame {
     public PApplet parent;
     private GameManager game_manager;
     Platform gamePlatform;
+    InputController inputController;
     public Player player;
     public GolfGame(PApplet p){
         this.parent = p;
     }
     public void start(){
         game_manager = new GameManager(this.parent);
+        inputController = new InputController(this.parent);
 
         // add player
         player = new Player(this.parent, 300,100, 30, 30);
@@ -24,6 +27,8 @@ public class GolfGame {
     }
     public void update(){
         game_manager.update();
+//        inputController.update();
+
     }
 
 }

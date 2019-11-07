@@ -1,8 +1,10 @@
 import core.game.GolfGame;
+import core.game_engine.input_commands.InputController;
 import processing.core.PApplet;
 public class Main extends PApplet {
     private int WIDTH = 600, HEIGHT = 400;
     private GolfGame golfGame;
+    InputController playerInput;
     public void settings(){
         size(WIDTH, HEIGHT);
     }
@@ -16,7 +18,7 @@ public class Main extends PApplet {
         golfGame.update();
         if(mousePressed){
             line(mouseX,mouseY, golfGame.player.position.x , golfGame.player.position.y);
-
+            System.out.println(mouseX);
         }
 
     }
@@ -26,6 +28,7 @@ public class Main extends PApplet {
 
     public void mouseReleased(){
         golfGame.player.move();
+        playerInput.update();
     }
 
 }
