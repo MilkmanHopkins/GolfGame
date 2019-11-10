@@ -1,6 +1,8 @@
 import core.game.GolfGame;
 import core.game_engine.input_commands.InputController;
 import processing.core.PApplet;
+import processing.core.PVector;
+
 public class Main extends PApplet {
     private int WIDTH = 600, HEIGHT = 400;
     private GolfGame golfGame;
@@ -12,13 +14,19 @@ public class Main extends PApplet {
         background(0);
         golfGame = new GolfGame(this);
         golfGame.start();
+        playerInput = new InputController(this, golfGame.player.position);
     }
     public void draw(){
         background(255);
         golfGame.update();
+        //playerInput.update();
+        //golfGame.player.move();
+
         if(mousePressed){
-            line(mouseX,mouseY, golfGame.player.position.x , golfGame.player.position.y);
-            System.out.println(mouseX);
+            if(dist(mouseX,mouseY, golfGame.player.position.x , golfGame.player.position.y) < 200){
+                line(mouseX,mouseY, golfGame.player.position.x , golfGame.player.position.y);
+            }
+
         }
 
     }
@@ -28,7 +36,9 @@ public class Main extends PApplet {
 
     public void mouseReleased(){
         golfGame.player.move();
-        playerInput.update();
+        //playerInput.update();
+
+        //playerInput.location.add(playerInput.velocity);
     }
 
 }

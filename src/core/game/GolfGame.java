@@ -13,7 +13,7 @@ public class GolfGame {
     }
     public void start(){
         game_manager = new GameManager(this.parent);
-        inputController = new InputController(this.parent);
+        //inputController = new InputController(this.parent);
 
         // add player
         player = new Player(this.parent, 300,100, 30, 30);
