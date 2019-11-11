@@ -30,13 +30,8 @@ public class Player extends Sprite {
     @Override
     public void update() {
         super.update();
-        //playerInput.location = this.position;
 
         playerInput.update();
-
-
-        //System.out.println(playerInput.location);
-        //playerInput.mousePressed(parent.mouseX, parent.mouseY, this.position.x, this.position.y);
 
         parent.pushMatrix();
         // platform rectangle
@@ -48,14 +43,8 @@ public class Player extends Sprite {
 
     public void move(){
         playerInput.location.add(playerInput.velocity);
-        System.out.println(acceleration);
+        System.out.println(playerInput.location);
 
-        //System.out.println(playerInput.velocity);
-        //this.position.x += playerInput.location.x * acceleration;
-        //this.position.y += playerInput.location.y * acceleration;
-        //playerInput.mousePressed();
-        //physicsComponent.setVelocity(playerInput.location.x * acceleration , playerInput.location.y * acceleration);
-        //physicsComponent.setVelocity(playerInput.location.x, playerInput.location.y );
     }
 
 

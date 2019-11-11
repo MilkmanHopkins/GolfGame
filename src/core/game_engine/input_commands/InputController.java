@@ -12,10 +12,9 @@ public class InputController {
     PhysicsComponent physicsComponent;
     public PVector location;
     public PVector velocity;
-    PVector acceleration;
-    public float accel;
+    PVector direction;
     PVector mouse;
-    private float topSpeed = 10;
+    private float topSpeed = 2;
     public InputController(PApplet p, PVector pos){
         this.parent = p;
         this.location = pos;
@@ -26,25 +25,16 @@ public class InputController {
     public void update(){
         //location = new PVector(player.position.x, player.position.y);
         mouse = new PVector(parent.mouseX, parent.mouseY);
-        //location = new PVector(2, 4);
 
-        //velocity.add(mouse, location);
-        //velocity.limit(accel);
-
-        acceleration = PVector.sub(mouse, location);
+        direction = PVector.sub(location, mouse);
 
         //acceleration.setMag(1);
 
-        velocity.add(acceleration);
+        velocity.add(direction);
         velocity.limit(topSpeed);
         //location.add(velocity);
 
-        System.out.println(velocity);
+        //System.out.println(velocity);
     }
-    /*public void mouseRelease(){
-        mouse = new PVector(parent.mouseX, parent.mouseY);
-        //accel = PVector.dist(mouse, location);
-        acceleration = PVector.sub(mouse, location);
-        velocity.add(acceleration);
-    }*/
+
 }

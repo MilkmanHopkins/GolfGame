@@ -20,7 +20,7 @@ public class Main extends PApplet {
         background(255);
         golfGame.update();
         //playerInput.update();
-        //golfGame.player.move();
+        golfGame.player.move();
 
         if(mousePressed){
             if(dist(mouseX,mouseY, golfGame.player.position.x , golfGame.player.position.y) < 200){
