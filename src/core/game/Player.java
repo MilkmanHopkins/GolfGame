@@ -10,7 +10,7 @@ public class Player extends Sprite {
     public PVector size;
 
     private PhysicsComponent physicsComponent;
-    private InputController playerInput;
+    public InputController playerInput;
     //private float acceleration = 2;
     PVector mouse;
 
@@ -30,8 +30,9 @@ public class Player extends Sprite {
     @Override
     public void update() {
         super.update();
-
-        playerInput.update();
+        this.move();
+        mouse = new PVector(parent.mouseX, parent.mouseY);
+//        mouse.limit(2000);
 
         parent.pushMatrix();
         // platform rectangle
@@ -39,14 +40,17 @@ public class Player extends Sprite {
         parent.translate(this.position.x, this.position.y);
         this.parent.rect(0, 0, this.size.x, this.size.y);
         parent.popMatrix();
+        if(parent.mousePressed) {
+            parent.line(mouse.x, mouse.y, this.position.x, this.position.y);
+//            if (parent.dist(parent.mouseX, parent.mouseY, this.position.x, this.position.y) < 200) {
+//                parent.line(parent.mouseX, parent.mouseY, this.position.x, this.position.y);
+//            }
+        }
     }
 
     public void move(){
         playerInput.location.add(playerInput.velocity);
-        System.out.println(playerInput.location);
-
+        //System.out.println(playerInput.location);
     }
-
-
 
 }

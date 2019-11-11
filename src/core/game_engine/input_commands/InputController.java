@@ -14,27 +14,20 @@ public class InputController {
     public PVector velocity;
     PVector direction;
     PVector mouse;
-    private float topSpeed = 2;
+    public float topSpeed = 1;
     public InputController(PApplet p, PVector pos){
         this.parent = p;
         this.location = pos;
         velocity = new PVector(0, 0);
     }
 
-
-    public void update(){
-        //location = new PVector(player.position.x, player.position.y);
+    public void mouseReleased(){
         mouse = new PVector(parent.mouseX, parent.mouseY);
+        topSpeed *= PVector.dist(location,mouse) / 100;
+        System.out.println(topSpeed);
 
         direction = PVector.sub(location, mouse);
-
-        //acceleration.setMag(1);
-
         velocity.add(direction);
         velocity.limit(topSpeed);
-        //location.add(velocity);
-
-        //System.out.println(velocity);
     }
-
 }

@@ -14,20 +14,20 @@ public class Main extends PApplet {
         background(0);
         golfGame = new GolfGame(this);
         golfGame.start();
-        playerInput = new InputController(this, golfGame.player.position);
+      //  playerInput = new InputController(this, golfGame.player.position);
     }
     public void draw(){
         background(255);
         golfGame.update();
         //playerInput.update();
-        golfGame.player.move();
+        //golfGame.player.move();
 
-        if(mousePressed){
-            if(dist(mouseX,mouseY, golfGame.player.position.x , golfGame.player.position.y) < 200){
-                line(mouseX,mouseY, golfGame.player.position.x , golfGame.player.position.y);
-            }
-
-        }
+//        if(mousePressed){
+//            if(dist(mouseX,mouseY, golfGame.player.position.x , golfGame.player.position.y) < 200){
+//                line(mouseX,mouseY, golfGame.player.position.x , golfGame.player.position.y);
+//            }
+//
+//        }
 
     }
     public static void main(String args[]){
@@ -35,10 +35,10 @@ public class Main extends PApplet {
     }
 
     public void mouseReleased(){
-        golfGame.player.move();
+        //golfGame.player.move();
         //playerInput.update();
-
-        //playerInput.location.add(playerInput.velocity);
+        golfGame.player.playerInput.mouseReleased();
+       // playerInput.mouseReleased();
     }
 
 }
