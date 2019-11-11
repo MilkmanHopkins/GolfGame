@@ -27,6 +27,7 @@ public class InputController {
         mouse = new PVector(parent.mouseX, parent.mouseY);
 
         direction = PVector.sub(location, mouse);
+        //gggg
 
         //acceleration.setMag(1);
 
