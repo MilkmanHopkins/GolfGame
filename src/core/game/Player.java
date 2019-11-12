@@ -8,10 +8,10 @@ import processing.core.PVector;
 
 public class Player extends Sprite {
     public PVector size;
+    public PVector origPos;     //original position
 
     private PhysicsComponent physicsComponent;
     public InputController playerInput;
-    //private float acceleration = 2;
     PVector mouse;
 
     PVector acceleration;
@@ -23,7 +23,7 @@ public class Player extends Sprite {
         boxCollider2D = new BoxCollider2D(this, w, h);
         physicsComponent = new PhysicsComponent(this, boxCollider2D);
         playerInput = new InputController(this.parent, this.position);
-
+        origPos = this.position;
 
     }
 
@@ -31,6 +31,7 @@ public class Player extends Sprite {
     public void update() {
         super.update();
         this.move();
+
         mouse = new PVector(parent.mouseX, parent.mouseY);
 //        mouse.limit(2000);
 
@@ -42,15 +43,16 @@ public class Player extends Sprite {
         parent.popMatrix();
         if(parent.mousePressed) {
             parent.line(mouse.x, mouse.y, this.position.x, this.position.y);
-//            if (parent.dist(parent.mouseX, parent.mouseY, this.position.x, this.position.y) < 200) {
-//                parent.line(parent.mouseX, parent.mouseY, this.position.x, this.position.y);
-//            }
+            playerInput.topSpeed = 0;
         }
     }
 
+
     public void move(){
         playerInput.location.add(playerInput.velocity);
-        //System.out.println(playerInput.location);
+        playerInput.slowDown();
+
+
     }
 
 }

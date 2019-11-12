@@ -8,7 +8,8 @@ public class Main extends PApplet {
     private GolfGame golfGame;
     InputController playerInput;
     public void settings(){
-        size(WIDTH, HEIGHT);
+        //size(WIDTH, HEIGHT);
+        fullScreen();
     }
     public void setup(){
         background(0);
@@ -19,6 +20,7 @@ public class Main extends PApplet {
     public void draw(){
         background(255);
         golfGame.update();
+        golfGame.player.playerInput.update();
         //playerInput.update();
         //golfGame.player.move();
 
@@ -35,10 +37,7 @@ public class Main extends PApplet {
     }
 
     public void mouseReleased(){
-        //golfGame.player.move();
-        //playerInput.update();
         golfGame.player.playerInput.mouseReleased();
-       // playerInput.mouseReleased();
     }
 
 }
