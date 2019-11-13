@@ -5,7 +5,10 @@ import processing.core.PApplet;
 public class GolfGame {
     public PApplet parent;
     private GameManager game_manager;
-    Platform gamePlatform;
+    Platform leftSideWall;
+    Platform rightSideWall;
+    Platform bottomWall;
+    Platform topWall;
     InputController inputController;
     public Player player;
     public GolfGame(PApplet p){
@@ -16,12 +19,19 @@ public class GolfGame {
         //inputController = new InputController(this.parent);
 
         // add player
-        player = new Player(this.parent, 300,100, 30, 30);
+        player = new Player(this.parent, 300,650, 30, 30);
         game_manager.add_game_object(player);
 
-        gamePlatform = new Platform(this.parent, 150,300, 200, 80);
+        leftSideWall = new Platform(this.parent, 1,400, 10, 2000);
+        rightSideWall = new Platform(this.parent, 799, 400, 10, 2000);
+        bottomWall = new Platform(this.parent, 400, 999, 1000, 10);
+        topWall = new Platform(this.parent, 400, 600, 1000, 10);
 
-        game_manager.add_game_object(gamePlatform);
+
+        game_manager.add_game_object(leftSideWall);
+        game_manager.add_game_object(rightSideWall);
+        game_manager.add_game_object(bottomWall);
+        game_manager.add_game_object(topWall);
 
 
     }

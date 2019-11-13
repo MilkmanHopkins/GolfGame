@@ -4,12 +4,12 @@ import processing.core.PApplet;
 import processing.core.PVector;
 
 public class Main extends PApplet {
-    private int WIDTH = 600, HEIGHT = 400;
+    private int WIDTH = 800, HEIGHT = 1000;
     private GolfGame golfGame;
     InputController playerInput;
     public void settings(){
-        //size(WIDTH, HEIGHT);
-        fullScreen();
+        size(WIDTH, HEIGHT);
+        //fullScreen();
     }
     public void setup(){
         background(0);
@@ -20,7 +20,6 @@ public class Main extends PApplet {
     public void draw(){
         background(255);
         golfGame.update();
-        golfGame.player.playerInput.update();
         //playerInput.update();
         //golfGame.player.move();
 
