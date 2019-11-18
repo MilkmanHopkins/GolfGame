@@ -1,21 +1,29 @@
 package core.game_engine.physics;
 
+import core.game.Score;
 import core.game_engine.Component;
 import core.game_engine.GameObject;
 import core.game_engine.LayerTypes;
 import core.game_engine.input_commands.InputController;
+import processing.core.PApplet;
 import processing.core.PVector;
 
-public class Bounce extends Component {
+public class Bouncy extends Component {
     public PVector velocity;
     InputController inputController;
+    Score score;
+    private boolean isFinished = false;
+
+    public boolean isFinished() {
+        return isFinished;
+    }
 
     private float spacer = 0.3f;
     private BoxCollider2D boxCollider2D;
 
 
 
-    public Bounce(GameObject g, BoxCollider2D b){
+    public Bouncy(GameObject g, BoxCollider2D b){
         super(g);
         this.boxCollider2D = b;
     }
@@ -28,6 +36,8 @@ public class Bounce extends Component {
                 // move player relative to what it collided with
                 if(b.gameObject.getLayerType() == LayerTypes.INTERACTABLE){
                     b.gameObject.setActive(false);
+                    isFinished = true;
+                    System.out.println("GOAL");
                 }else{
                     // static stuff or moving
                     setCollisionSide(b);

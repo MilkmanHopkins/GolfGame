@@ -24,8 +24,8 @@ public class InputController {
     public void mouseReleased(){
         mouse = new PVector(parent.mouseX, parent.mouseY);
         speed += PVector.dist(location,mouse) / 25;
-        if(speed > 10){
-            speed = 10;      //Limit top speed
+        if(speed > 15){
+            speed = 15;      //Limit top speed
         }
 
         direction = PVector.sub(location, mouse);
