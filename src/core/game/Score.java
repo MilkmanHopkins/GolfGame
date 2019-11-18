@@ -29,9 +29,8 @@ public class Score {
         }else if(strokeNum == 7){
             finishText = "Quadruple bogey";
         }else{
-            finishText = "Bogey 5";
+            finishText = "Disaster";
         }
-
         textOnScreen();
     }
 

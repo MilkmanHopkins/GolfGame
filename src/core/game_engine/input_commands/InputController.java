@@ -37,7 +37,7 @@ public class InputController {
     public void slowDown(){
         velocity.setMag(length);
         if(length > 0){
-            length -= 0.1;
+            length -= 0.07;
         }else {
             length = 0;
         }
