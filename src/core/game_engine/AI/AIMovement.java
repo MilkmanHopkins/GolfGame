@@ -1,10 +1,9 @@
-package core.game_engine.input_commands;
+package core.game_engine.AI;
 
-import core.game.Player;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class InputController {
+public class AIMovement {
 
     PApplet parent;
     public PVector location;
@@ -14,22 +13,21 @@ public class InputController {
     public float length;
     public float speed = 1;
 
-    public InputController(PApplet p, PVector pos){
+    public AIMovement(PApplet p, PVector pos){
         this.parent = p;
         this.location = pos;
         velocity = new PVector(0, 0);
     }
 
+    public void AIMove(PVector goalPos){
+       /* mouse = new PVector(parent.mouseX, parent.mouseY);
+        speed += PVector.dist(location,mouse) / 25;
+        if(speed > 15){
+            speed = 15;      //Limit top speed
+        }*/
+       speed = 13;
 
-
-    public void mouseReleased(){
-        mouse = new PVector(parent.mouseX, parent.mouseY);
-        speed += PVector.dist(location,mouse) / 25;     // Speed depends on mouse distance from player
-        if(speed > 13){
-            speed = 13;      //Limit top speed
-        }
-
-        direction = PVector.sub(location, mouse);       // Direction is opposite of mouse location
+        direction = PVector.sub( goalPos, location);
         velocity.add(direction);
         velocity.limit(speed);
         length = velocity.mag();
