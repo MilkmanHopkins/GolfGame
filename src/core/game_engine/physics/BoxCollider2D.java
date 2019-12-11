@@ -6,7 +6,7 @@ import core.game_engine.Sprite;
 import java.util.ArrayList;
 
 public class BoxCollider2D extends Component {
-    private Circle bounds;
+    private RECTANGLE bounds;
     private boolean hasCollided = false;
     private SIDES hitSideV = SIDES.NONE;
     private SIDES hitSideH = SIDES.NONE;
@@ -20,7 +20,7 @@ public class BoxCollider2D extends Component {
         return hitSideH;
     }
 
-    public Circle getBounds() {
+    public RECTANGLE getBounds() {
         return bounds;
     }
 
@@ -28,7 +28,7 @@ public class BoxCollider2D extends Component {
 
     public BoxCollider2D(Sprite g, float w, float h) {
         super(g);
-        this.bounds = new Circle(gameObject.position.x, gameObject.position.y, w, h);
+        this.bounds = new RECTANGLE(gameObject.position.x, gameObject.position.y, w, h);
     }
 
     @Override

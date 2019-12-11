@@ -8,6 +8,7 @@ public class Score {
     PApplet parent;
     String finishText;
     public int strokeNum;
+
     public Score(PApplet p){
         this.parent = p;
         Instance = this;

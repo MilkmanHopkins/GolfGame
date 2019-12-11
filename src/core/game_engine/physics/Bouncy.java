@@ -10,9 +10,9 @@ import processing.core.PVector;
 
 public class Bouncy extends Component {
     public PVector velocity;
-    InputController inputController;
-    Score score;
+
     private boolean isFinished = false;
+    //public boolean isGrid = false;
 
     public boolean isFinished() {
         return isFinished;
@@ -37,8 +37,10 @@ public class Bouncy extends Component {
                 if(b.gameObject.getLayerType() == LayerTypes.INTERACTABLE){
                     b.gameObject.setActive(false);
                     isFinished = true;
-                    System.out.println("GOAL");
-                }else{
+                    //System.out.println("GOAL");
+                }else if(b.gameObject.getLayerType() == LayerTypes.PATHFIND) {
+                    //System.out.println("WHAAAAAAAAAAAAAAT");
+                }else {
                     // static stuff or moving
                     setCollisionSide(b);
                 }
@@ -58,7 +60,7 @@ public class Bouncy extends Component {
                 if (velocity.y < 0) {
                     this.gameObject.next_position.y = otherBottomLeft.getY() + this.boxCollider2D.getBounds().getHeight() / 2f + spacer;
                     velocity.y *= -1;
-                    System.out.println("collide");
+                    //System.out.println("collide");
                 }
                 break;
             case BOTTOM:
@@ -78,7 +80,7 @@ public class Bouncy extends Component {
                 if(velocity.x > 0){
                     velocity.x *= -1;
                     this.gameObject.next_position.x = otherBottomLeft.getX() - this.boxCollider2D.getBounds().getWidth() / 2f - spacer;
-                    System.out.println("collide");
+                    //System.out.println("collide");
                 }
 
                 break;

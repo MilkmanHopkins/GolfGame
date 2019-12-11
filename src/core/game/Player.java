@@ -44,7 +44,7 @@ public class Player extends Sprite {
            parent.noLoop();    //Stop game
         }
 
-        //System.out.println(playerInput.velocity);
+        //System.out.println(playerInput.length);
         //System.out.println(physicsComponent.velocity);
 
         mouse = new PVector(parent.mouseX, parent.mouseY);

@@ -1,6 +1,6 @@
 package core.game_engine.physics;
 
-public class Circle {
+public class RECTANGLE {
     private float x, y, width, height;
     private Point topRight = new Point(1, 1);
     private Point bottomLeft = new Point(-1, -1);
@@ -21,7 +21,7 @@ public class Circle {
         return height;
     }
 
-    public Circle(float _x, float _y, float w, float h) {
+    public RECTANGLE(float _x, float _y, float w, float h) {
         width = w;
         height = h;
         this.updateBounds(_x, _y);
@@ -44,7 +44,7 @@ public class Circle {
         }
         return true;
     }
-    public boolean isOverLapping(Circle other) {
+    public boolean isOverLapping(RECTANGLE other) {
         // if is not over lapping return false
         // is it above
         if (topRight.getY() > other.bottomLeft.getY() || bottomLeft.getY() < other.topRight.getY()) {
@@ -58,16 +58,16 @@ public class Circle {
     }
 
     // Is the moving object touching the other object: Above, Below, Left or Right
-    public boolean getIsTouchingAbove(Circle other) {
+    public boolean getIsTouchingAbove(RECTANGLE other) {
         return other.topRight.getY() <= this.bottomLeft.getY() && other.topRight.getY() > this.topRight.getY();
     }
-    public boolean getIsTouchingBelow(Circle other) {
+    public boolean getIsTouchingBelow(RECTANGLE other) {
         return other.bottomLeft.getY() >= this.topRight.getY() && other.bottomLeft.getY() < this.bottomLeft.getY();
     }
-    public boolean getIsTouchingRight(Circle other) {
+    public boolean getIsTouchingRight(RECTANGLE other) {
         return other.topRight.getX() >= this.bottomLeft.getX() && other.topRight.getX() < this.topRight.getX();
     }
-    public boolean getIsTouchingLeft(Circle other) {
+    public boolean getIsTouchingLeft(RECTANGLE other) {
         return other.bottomLeft.getX() <= this.topRight.getX() && other.bottomLeft.getX() > this.bottomLeft.getX();
     }
 
