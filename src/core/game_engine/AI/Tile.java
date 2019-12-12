@@ -29,7 +29,7 @@ public class Tile extends Sprite {
 
         parent.pushMatrix();
         if(gridCollisionDetection.isGrid){
-            System.out.println("Works");
+            //System.out.println("Works");
             this.parent.fill(200,128,114);
         }else {
             this.parent.fill(190,248,255);

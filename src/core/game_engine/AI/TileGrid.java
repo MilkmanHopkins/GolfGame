@@ -16,10 +16,10 @@ public class TileGrid {
         this.parent = p;
         //this.size = new PVector(w,h);
 
-        tiles = new Tile[160][200];
-        for (int i = 0; i < 160; i++) {
-            for (int j = 0; j < 200; j++) {
-                tiles[i][j] = new Tile(this.parent, i * 10, j * 10, 10, 10);
+        tiles = new Tile[40][40];
+        for (int i = 0; i < 40; i++) {
+            for (int j = 0; j < 40; j++) {
+                tiles[i][j] = new Tile(this.parent, i * 20, j * 20, 20, 20);
                 //tiles[i][j].gridCollisionDetection = new GridCollisionDetection(tiles[i][j], boxCollider2D);
                 //this.parent.rect(i * 25, j * 25, 25, 25);
             }
@@ -27,14 +27,20 @@ public class TileGrid {
     }
         public void update () {
 
-            for (int i = 0; i < 160; i++) {     //Update tiles
-                for (int j = 0; j < 200; j++) {
+            for (int i = 0; i < 40; i++) {     //Update tiles
+                for (int j = 0; j < 40; j++) {
                     //Tile t = tiles[i][j];
                     //parent.rect(t.pos.x, t.pos.y, t.size.x, t.size.y);
                     //t.update();
                     this.tiles[i][j].update();
+                    /*if(tiles[i][j].gridCollisionDetection.isGrid){
+                        System.out.println("WORKS");
+                    }*/
+
                 }
             }
+
+
 
             /*for (int i = 0; i < 160; i++) {
                 for (int j = 0; j < 200; j++) {

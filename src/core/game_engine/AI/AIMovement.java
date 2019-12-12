@@ -9,14 +9,20 @@ public class AIMovement {
     public PVector location;
     public PVector velocity;
     PVector direction;
-    PVector mouse;
     public float length;
     public float speed = 1;
+    public Tile tile;
 
     public AIMovement(PApplet p, PVector pos){
         this.parent = p;
         this.location = pos;
         velocity = new PVector(0, 0);
+    }
+
+    public  void pathFind(float x, float y, float x2, float y2){
+        if(tile.gridCollisionDetection.isGrid == false){
+
+        }
     }
 
     public void AIMove(PVector goalPos){

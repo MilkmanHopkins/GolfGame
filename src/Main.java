@@ -4,7 +4,7 @@ import core.game_engine.input_commands.InputController;
 import processing.core.PApplet;
 
 public class Main extends PApplet {
-    private int WIDTH = 800, HEIGHT = 1000;
+    private int WIDTH = 800, HEIGHT = 800;
     private GolfGame golfGame;
     private Score score;
     InputController playerInput;

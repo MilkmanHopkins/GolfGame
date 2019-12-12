@@ -27,7 +27,7 @@ public class AI extends Sprite {
     @Override
     public void update() {
         super.update();
-        this.move();
+        //this.move();
 
         parent.pushMatrix();
         // platform rectangle
