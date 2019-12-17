@@ -40,8 +40,8 @@ public class Player extends Sprite {
         super.update();
         this.move();
         if(bouncy.isFinished()){
-        Score.Instance.textFinish();
-           parent.noLoop();    //Stop game
+            Score.Instance.textFinish();
+            parent.noLoop();    //Stop game
         }
 
         //System.out.println(playerInput.length);

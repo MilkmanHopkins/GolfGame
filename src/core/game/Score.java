@@ -44,7 +44,7 @@ public class Score {
     public void textFinish(){
         parent.textSize(80);
         parent.fill(0);
-        parent.textAlign(parent.CENTER, parent.CENTER);
+        parent.textAlign(parent.CENTER, 350);
         parent.text(finishText, 400, 500);
 
     }

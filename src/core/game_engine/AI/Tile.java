@@ -11,6 +11,8 @@ public class Tile extends Sprite {
 
     public PVector size;
     public GridCollisionDetection gridCollisionDetection;
+    public boolean collides = false;
+    public boolean playerCol = false;
 
     public Tile(PApplet p, float x, float y, float w, float h){
         super(p,x,y,w,h);
@@ -27,9 +29,12 @@ public class Tile extends Sprite {
     public void update(){
         super.update();
 
+
+
         parent.pushMatrix();
         if(gridCollisionDetection.isGrid){
             //System.out.println("Works");
+            layerType = LayerTypes.HITWALL;
             this.parent.fill(200,128,114);
         }else {
             this.parent.fill(190,248,255);

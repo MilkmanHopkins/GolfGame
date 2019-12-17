@@ -9,7 +9,7 @@ public class InputController {
     PApplet parent;
     public PVector location;
     public PVector velocity;
-    PVector direction;
+    public PVector direction;
     PVector mouse;
     public float length;
     public float speed = 1;

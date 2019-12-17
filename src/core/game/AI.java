@@ -17,8 +17,7 @@ public class AI extends Sprite {
         super(p, x, y, w, h);
         this.parent = p;
         this.size = new PVector(w, h, 0);
-        layerType = LayerTypes.MOVING;
-
+        layerType = LayerTypes.AI;
 
         boxCollider2D = new BoxCollider2D(this, w, h);
         bouncy = new Bouncy(this, boxCollider2D);
@@ -27,14 +26,14 @@ public class AI extends Sprite {
     @Override
     public void update() {
         super.update();
-        //this.move();
+        this.move();
 
         parent.pushMatrix();
         // platform rectangle
         parent.fill(255,0,0);
         parent.rectMode(PApplet.CENTER);
         parent.translate(this.position.x, this.position.y);
-        this.parent.ellipse(0, 0, this.size.x, this.size.y);
+        this.parent.rect(0, 0, this.size.x, this.size.y);
         parent.popMatrix();
 
 

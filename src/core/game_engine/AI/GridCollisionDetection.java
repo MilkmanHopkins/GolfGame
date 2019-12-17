@@ -10,6 +10,8 @@ public class GridCollisionDetection extends Component {
 
     private BoxCollider2D boxCollider2D;
     public boolean isGrid = false;
+    public boolean hitRedGrid = false;
+
     public GridCollisionDetection(GameObject g, BoxCollider2D b) {
         super(g);
         this.boxCollider2D = b;
@@ -24,8 +26,7 @@ public class GridCollisionDetection extends Component {
                     isGrid = true;
                     //System.out.println("JJJ");
                 }
-                //isGrid = true;
-                //System.out.println("JJJ");
+
             }
             this.boxCollider2D.otherColliders.clear();
         }

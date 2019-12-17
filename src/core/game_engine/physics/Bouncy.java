@@ -12,7 +12,7 @@ public class Bouncy extends Component {
     public PVector velocity;
 
     private boolean isFinished = false;
-    //public boolean isGrid = false;
+    public boolean hitGrid = false;
 
     public boolean isFinished() {
         return isFinished;
@@ -38,8 +38,9 @@ public class Bouncy extends Component {
                     b.gameObject.setActive(false);
                     isFinished = true;
                     //System.out.println("GOAL");
-                }else if(b.gameObject.getLayerType() == LayerTypes.PATHFIND) {
-                    //System.out.println("WHAAAAAAAAAAAAAAT");
+                }else if(b.gameObject.getLayerType() == LayerTypes.HITWALL) {
+                    hitGrid = true;
+                    System.out.println("WHAAAAAAAAAAAAAAT");
                 }else {
                     // static stuff or moving
                     setCollisionSide(b);
