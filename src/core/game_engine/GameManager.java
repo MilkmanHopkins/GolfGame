@@ -26,4 +26,8 @@ public class GameManager {
             }
         }
     }
+
+    public ArrayList<Sprite> getGame_objects() {
+        return game_objects;
+    }
 }
