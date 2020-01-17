@@ -13,6 +13,9 @@ public class GolfGame {
     public PApplet parent;
     private GameManager game_manager;
     Goal goal;
+    Goal goal2;
+    Ball ball;
+
     SideWalls leftSideWall;
     SideWalls rightSideWall;
     SideWalls bottomWall;
@@ -43,7 +46,8 @@ public class GolfGame {
         dataManager.load();
         addedSprites = new ArrayList<>();
         //inputController = new InputController(this.parent);
-        goal = new Goal(this.parent, 400,40,40,40);
+        goal = new Goal(this.parent, 400,40,100,40);
+        goal2 = new Goal(this.parent, 400,760,100,40);
 
         //tileGrid = new TileGrid();        //Needs to put in game engine AI
         tiles = new Tile[20][20];
@@ -65,8 +69,12 @@ public class GolfGame {
 
 
         ai = new AI(this.parent, 100, 600, 30, 30);
+        ball = new Ball(this.parent, 400, 400, 60, 60);
+
+
         game_manager.add_game_object(player);
-        game_manager.add_game_object(ai);
+        game_manager.add_game_object(ball);
+       // game_manager.add_game_object(ai);
 
 
         leftSideWall = new SideWalls(this.parent, 1,400, 50, 2000);
@@ -75,6 +83,7 @@ public class GolfGame {
         topWall = new SideWalls(this.parent, 400, 1, 1000, 50);
 
         game_manager.add_game_object(goal);
+        game_manager.add_game_object(goal2);
 
         game_manager.add_game_object(leftSideWall);
         game_manager.add_game_object(rightSideWall);
@@ -152,7 +161,7 @@ public class GolfGame {
         game_manager.update();
 
         if(ai.slingShot.getLength() == 0){
-            ai.slingShot.Trigger((int)player.position.x, (int)player.position.y);
+            ai.slingShot.Trigger((int)ball.position.x, (int)ball.position.y);
         }
        // parent.stroke(0,255,0);
        // parent.line(player.position.x, player.position.y, goal.position.x, goal.position.y);

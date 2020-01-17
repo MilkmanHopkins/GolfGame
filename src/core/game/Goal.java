@@ -27,7 +27,7 @@ public class Goal extends Sprite {
         parent.rectMode(PApplet.CENTER);
         parent.translate(this.position.x, this.position.y);
         parent.fill(0,0,150);
-        this.parent.ellipse(0, 0, this.size.x, this.size.y);
+        this.parent.rect(0, 0, this.size.x, this.size.y);
         parent.popMatrix();
     }
 

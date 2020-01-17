@@ -38,10 +38,10 @@ public class Player extends Sprite {
     @Override
     public void update() {
         super.update();
-        if(bouncy.isFinished()){
+        /*if(bouncy.isFinished()){
         Score.Instance.textFinish();
-           parent.noLoop();    //Stop game
-        }
+          // parent.noLoop();    //Stop game
+        }*/
 
         //System.out.println(playerInput.length);
         //System.out.println(physicsComponent.velocity);
