@@ -1,12 +1,9 @@
 package core.game;
 import core.game_engine.AI.Tile;
-import core.game_engine.AI.TileGrid;
 import core.game_engine.GameManager;
 import core.game_engine.Sprite;
 import core.game_engine.data_management.DataManager;
-import core.game_engine.input_commands.InputController;
 import processing.core.PApplet;
-import processing.core.PVector;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
 
@@ -30,9 +27,11 @@ public class GolfGame {
     public ArrayList<Sprite> addedSprites;
 
     public Tile[][] tiles;
+    public Tile tile;
+    private int tileSize = 40;
+
     AI ai;
 
-    InputController inputController;
     public Player player;
     public GolfGame(PApplet p){
         this.parent = p;
@@ -47,32 +46,32 @@ public class GolfGame {
         goal = new Goal(this.parent, 400,40,40,40);
 
         //tileGrid = new TileGrid();        //Needs to put in game engine AI
-        tiles = new Tile[40][40];
+        tiles = new Tile[20][20];
 
-        for (int i = 0; i < 40; i++) {      // Call all tiles
-            for (int j = 0; j < 40; j++) {
-                tiles[i][j] = new Tile(this.parent, i * 20, j * 20, 20, 20);
+        for (int i = 1; i < tiles.length; i++) {      // Call all tiles
+            for (int j = 1; j < tiles.length; j++) {
+                tiles[i][j] = new Tile(this.parent, i * tileSize, j * tileSize, tileSize, tileSize);
                 //tiles[i][j].gridCollisionDetection = new GridCollisionDetection(tiles[i][j], boxCollider2D);
                 //this.parent.rect(i * 25, j * 25, 25, 25);
                 game_manager.add_game_object(tiles[i][j]);      //Add tiles to game manager
             }
         }
-
-
         // add player
-        player = new Player(this.parent, 300,650, 30, 30);
+        player = new Player(this.parent, 600,750, 30, 30);
 
 
+
+
+
+
+        ai = new AI(this.parent, 100, 600, 30, 30);
         game_manager.add_game_object(player);
-
-
-
-        ai = new AI(this.parent, 300, 600, 30, 30);
         game_manager.add_game_object(ai);
+
 
         leftSideWall = new SideWalls(this.parent, 1,400, 50, 2000);
         rightSideWall = new SideWalls(this.parent, 799, 400, 50, 2000);
-        bottomWall = new SideWalls(this.parent, 400, 999, 1000, 50);
+        bottomWall = new SideWalls(this.parent, 400, 799, 1000, 50);
         topWall = new SideWalls(this.parent, 400, 1, 1000, 50);
 
         game_manager.add_game_object(goal);
@@ -84,6 +83,11 @@ public class GolfGame {
 
 
 
+    }
+
+    public void reset(){
+        parent.clear();
+        addedSprites.clear();
     }
 
     public void createObject(int x, int y){
@@ -102,14 +106,11 @@ public class GolfGame {
         }
     }
 
-    public void mouseReleased(){
-        player.playerInput.mouseReleased();
-    }
 
     public void save(){
         dataManager.save(addedSprites, "level1");
-        parent.clear();
-        game_manager = new GameManager(this.parent);
+        reset();
+
     }
 
     public void load(){
@@ -140,39 +141,19 @@ public class GolfGame {
         }
     }
     public void update(){
-        for (int i = 0; i < 40; i++) {     //Update all tiles
-            for (int j = 0; j < 40; j++) {
+        for (int i = 1; i < tiles.length; i++) {     //Update all tiles
+            for (int j = 1; j < tiles.length; j++) {
                 this.tiles[i][j].update();
+                tile = tiles[i][j];
 
-                if(tiles[i][j].position.y < ai.position.y){
-                    //System.out.println(this.parent.min(tiles[i][j].position.y, ai.position.y));
-                    if(tiles[i][j].gridCollisionDetection.isGrid == false){
-                        //float x = tiles[i][j].position.x;
-                        float x = tiles[i][j].position.x;
-                        //float y = this.parent.min(tiles[i][j].position.y, ai.position.y);
-                        float minY = this.parent.dist(0, ai.position.y, 0, tiles[i][j].position.y);
-                        //float minY = this.parent.dist(ai.position.x, ai.position.y, tiles[i][j].position.x, tiles[i][j].position.y);
-                        float y = this.parent.min(minY, ai.position.y);
-                        System.out.println("X = " + x);
-                        System.out.println("Y = " + y);
-                        parent.line(ai.position.x, ai.position.y, x, y);
-                        //System.out.println("LINE");
-                    }
-                }
 
            }
         }
-
         game_manager.update();
 
-
-
-        if(ai.aiMovement.length == 0){
-            ai.aiMovement.AIMove(goal.position);
+        if(ai.slingShot.getLength() == 0){
+            ai.slingShot.Trigger((int)player.position.x, (int)player.position.y);
         }
-
-
-
        // parent.stroke(0,255,0);
        // parent.line(player.position.x, player.position.y, goal.position.x, goal.position.y);
 

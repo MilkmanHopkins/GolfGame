@@ -1,7 +1,7 @@
 package core.game;
+import core.game_engine.physics.SlingShot;
 import core.game_engine.LayerTypes;
 import core.game_engine.Sprite;
-import core.game_engine.input_commands.InputController;
 import core.game_engine.physics.Bouncy;
 import core.game_engine.physics.BoxCollider2D;
 import processing.core.PApplet;
@@ -12,7 +12,7 @@ public class Player extends Sprite {
     //public PVector origPos;     //original position
 
     public Bouncy bouncy;
-    public InputController playerInput;
+    public SlingShot golfMovement;
     PVector mouse;
 
    // Score score;
@@ -21,16 +21,16 @@ public class Player extends Sprite {
         super(p, x, y, w, h);
         this.parent = p;
         this.size = new PVector(w, h, 0);
-        layerType = LayerTypes.MOVING;
+        this.layerType = LayerTypes.MOVING;
 
         //score = new Score(p);
 
         boxCollider2D = new BoxCollider2D(this, w, h);
 
         //physicsComponent = new PhysicsComponent(this, boxCollider2D);
-        bouncy = new Bouncy(this, boxCollider2D);
+        golfMovement = new SlingShot(this, this.position, this.bouncy, true);
+        bouncy = new Bouncy(this, boxCollider2D, golfMovement);
 
-        playerInput = new InputController(this.parent, this.position);
         //origPos = this.position;
 
     }
@@ -38,7 +38,6 @@ public class Player extends Sprite {
     @Override
     public void update() {
         super.update();
-        this.move();
         if(bouncy.isFinished()){
         Score.Instance.textFinish();
            parent.noLoop();    //Stop game
@@ -63,18 +62,10 @@ public class Player extends Sprite {
 
         if(parent.mousePressed) {
             parent.line(mouse.x, mouse.y, this.position.x, this.position.y);
-            playerInput.length = 0;
-            playerInput.speed = 0;      //reset speed
+            golfMovement.setSpeed(0);//reset speed
+            //golfMovement.setLength(0);//stop movement
         }
     }
 
-
-    public void move(){
-        bouncy.velocity = playerInput.velocity;
-        playerInput.location.add(playerInput.velocity);
-        playerInput.slowDown();
-
-
-    }
 
 }

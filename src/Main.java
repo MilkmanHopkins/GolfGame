@@ -1,16 +1,11 @@
-import core.game.GameMode;
-import core.game.GameSelect;
 import core.game.GolfGame;
 import core.game.Score;
-import core.game_engine.input_commands.InputController;
 import processing.core.PApplet;
 
 public class Main extends PApplet {
     private int WIDTH = 800, HEIGHT = 800;
     private GolfGame golfGame;
-    private GameSelect gameSelect;
     private Score score;
-    InputController playerInput;
     public void settings(){
         size(WIDTH, HEIGHT);
         //fullScreen();
@@ -23,7 +18,7 @@ public class Main extends PApplet {
 
         //gameSelect = new GameSelect(this);
         //gameSelect.start();
-      //  playerInput = new InputController(this, golfGame.player.position);
+        //playerInput = new InputController(this, golfGame.player.position);
     }
     public void draw(){
         background(255);
@@ -31,7 +26,6 @@ public class Main extends PApplet {
         //gameSelect.update();
         score.update();
         //playerInput.update();
-        //golfGame.player.move();
 
 //        if(mousePressed){
 //            if(dist(mouseX,mouseY, golfGame.player.position.x , golfGame.player.position.y) < 200){
@@ -46,8 +40,9 @@ public class Main extends PApplet {
     }
 
     public void mouseReleased(){
-        golfGame.mouseReleased();
-        golfGame.createObject(mouseX, mouseY);
+        //golfGame.mouseReleased();
+        //golfGame.createObject(mouseX, mouseY);
+        golfGame.player.golfMovement.Trigger(mouseX, mouseY);
         score.strokeNum += 1;
     }
 

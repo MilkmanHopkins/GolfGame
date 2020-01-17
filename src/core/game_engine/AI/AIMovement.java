@@ -33,7 +33,7 @@ public class AIMovement {
         }*/
        speed = 13;
 
-        direction = PVector.sub( goalPos, location);
+        direction = PVector.sub(goalPos, location);
         velocity.add(direction);
         velocity.limit(speed);
         length = velocity.mag();

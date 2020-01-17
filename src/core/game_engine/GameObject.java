@@ -20,7 +20,7 @@ public abstract class GameObject {
 
 
 
-    protected ArrayList<Component> componentList = new ArrayList<>();
+    public ArrayList<Component> componentList = new ArrayList<>();
     public GameObject(){
 
     }
