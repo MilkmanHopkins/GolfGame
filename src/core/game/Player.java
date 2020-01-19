@@ -38,10 +38,10 @@ public class Player extends Sprite {
     @Override
     public void update() {
         super.update();
-        /*if(bouncy.isFinished()){
+        if(bouncy.isFinished()){
         Score.Instance.textFinish();
           // parent.noLoop();    //Stop game
-        }*/
+        }
 
         //System.out.println(playerInput.length);
         //System.out.println(physicsComponent.velocity);
@@ -61,7 +61,7 @@ public class Player extends Sprite {
 
 
         if(parent.mousePressed) {
-            parent.line(mouse.x, mouse.y, this.position.x, this.position.y);
+            //parent.line(mouse.x, mouse.y, this.position.x, this.position.y);
             golfMovement.setSpeed(0);//reset speed
             //golfMovement.setLength(0);//stop movement
         }

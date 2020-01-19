@@ -12,7 +12,6 @@ public class Bouncy extends Component {
     public boolean playerHit = false;
     private boolean isPlayer;
     private SlingShot slingShot;
-    private boolean temp;
 
     public boolean isFinished() {
         return isFinished;
@@ -25,7 +24,6 @@ public class Bouncy extends Component {
 
     public Bouncy(GameObject g, BoxCollider2D b, SlingShot slingShot){
         super(g);
-        temp = true;
         this.boxCollider2D = b;
         this.slingShot = slingShot;
     }
@@ -82,16 +80,13 @@ public class Bouncy extends Component {
             case TOP:
                 if (velocity.y < 0) {
                     this.gameObject.next_position.y = otherBottomLeft.getY() + this.boxCollider2D.getBounds().getHeight() / 2f + spacer;
-
                     velocity.y *= -1;
-                    //System.out.println("collide");
                 }
                 break;
             case BOTTOM:
                 if (velocity.y > 0) {
                     this.gameObject.next_position.y = otherTopRight.getY() - this.boxCollider2D.getBounds().getHeight() / 2f + spacer;
                     velocity.y *= -1;
-
                 }
                 break;
             case NONE:
@@ -104,7 +99,6 @@ public class Bouncy extends Component {
                 if(velocity.x > 0){
                     velocity.x *= -1;
                     this.gameObject.next_position.x = otherBottomLeft.getX() - this.boxCollider2D.getBounds().getWidth() / 2f - spacer;
-                    //System.out.println("collide");
                 }
 
                 break;

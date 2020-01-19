@@ -54,7 +54,7 @@ public class SlingShot extends Component {
     public void slowDown(){
         velocity.setMag(length);
         if(length > 0){
-            length -= 0.07;
+            length -= 0.1;
         }else {
             length = 0;
         }

@@ -1,4 +1,5 @@
 package core.game;
+import core.game_engine.AI.RayCast;
 import core.game_engine.AI.Tile;
 import core.game_engine.GameManager;
 import core.game_engine.Sprite;
@@ -13,13 +14,14 @@ public class GolfGame {
     public PApplet parent;
     private GameManager game_manager;
     Goal goal;
-    Goal goal2;
-    Ball ball;
+
+    RayCast rayCast;
 
     SideWalls leftSideWall;
     SideWalls rightSideWall;
     SideWalls bottomWall;
     SideWalls topWall;
+
     Platform obstacle1;
     Platform obstacle2;
     Platform obstacle3;
@@ -46,8 +48,10 @@ public class GolfGame {
         dataManager.load();
         addedSprites = new ArrayList<>();
         //inputController = new InputController(this.parent);
-        goal = new Goal(this.parent, 400,40,100,40);
-        goal2 = new Goal(this.parent, 400,760,100,40);
+        goal = new Goal(this.parent, 400,40,40,40);
+
+        rayCast = new RayCast(this.parent);
+
 
         //tileGrid = new TileGrid();        //Needs to put in game engine AI
         tiles = new Tile[20][20];
@@ -63,18 +67,15 @@ public class GolfGame {
         // add player
         player = new Player(this.parent, 600,750, 30, 30);
 
+        obstacle1 = new Platform(this.parent, 400, 400, 200, 200);
 
 
 
 
 
-        ai = new AI(this.parent, 100, 600, 30, 30);
-        ball = new Ball(this.parent, 400, 400, 60, 60);
-
-
+        ai = new AI(this.parent, 100, 50, 30, 30);
         game_manager.add_game_object(player);
-        game_manager.add_game_object(ball);
-       // game_manager.add_game_object(ai);
+        game_manager.add_game_object(ai);
 
 
         leftSideWall = new SideWalls(this.parent, 1,400, 50, 2000);
@@ -83,15 +84,12 @@ public class GolfGame {
         topWall = new SideWalls(this.parent, 400, 1, 1000, 50);
 
         game_manager.add_game_object(goal);
-        game_manager.add_game_object(goal2);
+       // game_manager.add_game_object(obstacle1);
 
         game_manager.add_game_object(leftSideWall);
         game_manager.add_game_object(rightSideWall);
         game_manager.add_game_object(bottomWall);
         game_manager.add_game_object(topWall);
-
-
-
     }
 
     public void reset(){
@@ -103,7 +101,7 @@ public class GolfGame {
         Sprite sprite;
         switch(itemType){
             case "Platform" :
-                sprite = new Platform(this.parent, x, y, 30, 30);
+                sprite = new Platform(this.parent, x, y, 40, 40);
                 game_manager.add_game_object(sprite);
                 addedSprites.add(sprite);
                 break;
@@ -114,7 +112,6 @@ public class GolfGame {
                 break;
         }
     }
-
 
     public void save(){
         dataManager.save(addedSprites, "level1");
@@ -154,18 +151,30 @@ public class GolfGame {
             for (int j = 1; j < tiles.length; j++) {
                 this.tiles[i][j].update();
                 tile = tiles[i][j];
-
-
            }
         }
         game_manager.update();
 
-        if(ai.slingShot.getLength() == 0){
-            ai.slingShot.Trigger((int)ball.position.x, (int)ball.position.y);
+        if(!ExternalRayHit(addedSprites)){
+            if(ai.slingShot.getLength() == 0){
+                //ai.slingShot.Trigger((int)player.position.x, (int)player.position.y);
+            }
         }
-       // parent.stroke(0,255,0);
-       // parent.line(player.position.x, player.position.y, goal.position.x, goal.position.y);
+    }
 
+    public boolean ExternalRayHit(ArrayList<Sprite> platformCheck){
+        Sprite platform = null;
+        for (Sprite sprite : platformCheck){     //AI slingShot component
+            if (sprite.getClass().getSimpleName().equals("Platform")){
+                platform = ((Platform) sprite);
+            }
+            rayCast.update( ai.position.x, ai.position.y, player.position.x, player.position.y, platform.position.x, platform.position.y, platform.size.x, platform.size.y);
+            System.out.println(rayCast.isHit());
+            if (rayCast.isHit()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
