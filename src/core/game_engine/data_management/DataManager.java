@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class DataManager {
     PApplet parent;
-    private String load_game_file = "game.json";
+    private String load_game_file = "hole1.json";
     private String data_folder = "src/core/game/data_folder/";
     public JSONObject game_data;
     public DataManager(PApplet p){
@@ -18,13 +18,14 @@ public class DataManager {
     public void load(){
         this.game_data = parent.loadJSONObject(data_folder+load_game_file);
     }
-    public void save(ArrayList<Sprite> json_list, String nameOfList){
+    public void save(ArrayList<Sprite> json_list, String nameOfList, Sprite player){
         // list of objects with a name
         JSONArray new_list = new JSONArray();
         for(Serializable serialJson : json_list){
             // add to list
             new_list.append(serialJson.serializeToJSON());
         }
+        new_list.append(player.serializeToJSON());
         this.game_data.setJSONArray(nameOfList, new_list);
         parent.saveJSONObject(this.game_data, data_folder+load_game_file);
     }
@@ -35,4 +36,7 @@ public class DataManager {
         return null;
     }
 
+    public void setLoad_game_file(String load_game_file) {
+        this.load_game_file = load_game_file;
+    }
 }

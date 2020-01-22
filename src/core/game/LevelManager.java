@@ -18,7 +18,7 @@ public class LevelManager {
 
     private GameManager game_manager;
     PApplet parent;
-    private Player player;
+    Player player;
 
     public GameManager getGame_manager() {
         return game_manager;
@@ -31,23 +31,24 @@ public class LevelManager {
         game_manager = new GameManager(this.parent);
         dataManager.load();
         addedSprites = new ArrayList<>();
-
-    }
-    public void addPlayer(int x, int y){
-        player = new Player(this.parent, x, y, 30, 30);
+        //Player out of sight
+        player = new Player(p, -200, -200, 30, 30);
         game_manager.add_game_object(player);
-        addedSprites.add(player);
+    }
+
+    public void addPlayer(int x, int y){
+
     }
 
     public Player getPlayer() {
         return player;
     }
 
-    public void createObject(int x, int y){
-        Sprite sprite;
+    public Sprite createObject(int x, int y){
+        Sprite sprite = null;
         switch(itemType){
             case "Platform" :
-                sprite = new Platform(this.parent, grid_placement(parent.mouseX, 40), grid_placement(parent.mouseY, 40), 40, 40);
+                sprite = new Platform(this.parent, grid_placement(x, 40), grid_placement(y, 40), 40, 40);
                 game_manager.add_game_object(sprite);
                 addedSprites.add(sprite);
                 break;
@@ -61,7 +62,12 @@ public class LevelManager {
                 game_manager.add_game_object(sprite);
                 addedSprites.add(sprite);
                 break;
+            case "Player":
+                player.position.x = x;
+                player.position.y = y;
+                break;
         }
+        return sprite;
     }
     private int grid_placement(int num, int sizeOfGrid)
     {
@@ -69,25 +75,20 @@ public class LevelManager {
         return grid;
     }
 
-    public void reset(){
-        parent.clear();
-        addedSprites.clear();
-    }
-
     public void save(){
-        dataManager.save(addedSprites, "level1");
-        reset();
+        dataManager.save(addedSprites, "level1", player);
     }
 
     public void load(){
-        if(dataManager.game_data != null){
-            JSONArray savedSprites = dataManager.game_data.getJSONArray("level1");
-            for (int i = 0; i < savedSprites.size(); i++){
-                JSONObject jsonObject = (JSONObject) savedSprites.get(i);
-                itemType = jsonObject.getString("itemType");
-                createObject(jsonObject.getInt("x"), jsonObject.getInt("y"));
-            }
+        JSONArray savedSprites = dataManager.game_data.getJSONArray("level1");
+        for (int i = 0; i < savedSprites.size(); i++){
+            JSONObject jsonObject = (JSONObject) savedSprites.get(i);
+            itemType = jsonObject.getString("itemType");
+            createObject(jsonObject.getInt("x"), jsonObject.getInt("y"));
         }
-
+        game_manager.add_game_object(new SideWalls(this.parent, 1,400, 50, 2000));
+        game_manager.add_game_object(new SideWalls(this.parent, 799, 400, 50, 2000));
+        game_manager.add_game_object(new SideWalls(this.parent, 400, 799, 1000, 50));
+        game_manager.add_game_object(new SideWalls(this.parent, 400, 1, 1000, 50));
     }
 }

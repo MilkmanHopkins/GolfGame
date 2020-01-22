@@ -10,10 +10,6 @@ import processing.data.JSONObject;
 import java.util.ArrayList;
 
 public class LevelEditor {
-    SideWalls leftSideWall;
-    SideWalls rightSideWall;
-    SideWalls bottomWall;
-    SideWalls topWall;
 
     PApplet parent;
     RayCast rayCast;
@@ -24,6 +20,8 @@ public class LevelEditor {
     public LevelEditor(PApplet p){
         this.parent = p;
         rayCast = new RayCast(this.parent);
+        levelManager = new LevelManager(p);
+
     }
 
     public void start(){
@@ -38,25 +36,24 @@ public class LevelEditor {
                 levelManager.getGame_manager().add_game_object(tiles[i][j]);      //Add tiles to game manager
             }
         }
-        leftSideWall = new SideWalls(this.parent, 1,400, 50, 2000);
-        rightSideWall = new SideWalls(this.parent, 799, 400, 50, 2000);
-        bottomWall = new SideWalls(this.parent, 400, 799, 1000, 50);
-        topWall = new SideWalls(this.parent, 400, 1, 1000, 50);
 
-        levelManager.getGame_manager().add_game_object(leftSideWall);
-        levelManager.getGame_manager().add_game_object(rightSideWall);
-        levelManager.getGame_manager().add_game_object(bottomWall);
-        levelManager.getGame_manager().add_game_object(topWall);
+        // Sidewalls
+
     }
 
     public void updatePlay(){
+        levelManager.getGame_manager().update();
         AiUpdate();
-        for (int i = 1; i < tiles.length; i++) {     //Update all tiles
+        /*for (int i = 1; i < tiles.length; i++) {     //Update all tiles
             for (int j = 1; j < tiles.length; j++) {
                 this.tiles[i][j].update();
                 //tile = tiles[i][j];
             }
-        }
+        }*/
+    }
+
+    public void updateEdit(){
+        levelManager.getGame_manager().update();
     }
 
     public void mouseReleased(){
@@ -86,7 +83,7 @@ public class LevelEditor {
                 break;
             case 'b':
                 levelManager.itemType = "Player";
-                levelManager.addPlayer(parent.mouseX, parent.mouseY);
+                levelManager.createObject(parent.mouseX, parent.mouseY);
                 break;
         }
     }

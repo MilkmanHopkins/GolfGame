@@ -14,12 +14,15 @@ public class GolfGame {
     public PApplet parent;
 
     LevelEditor levelEditor;
-    GameMode gameMode = GameMode.START;
+    GameMode gameMode;
     private Score score;
 
 
     public GolfGame(PApplet p){
         this.parent = p;
+        levelEditor = new LevelEditor(p);
+        gameMode = GameMode.PLAY;
+        levelEditor.keyPressedEdit('l');
     }
 
     public void mouseReleased(){
@@ -38,15 +41,16 @@ public class GolfGame {
     }
 
     public void update(){
-        score.update();
+//        score.update();
         switch (gameMode){
             case START:
                 welcome_screen();
                 break;
             case PLAY:
+                levelEditor.updatePlay();
                 break;
             case EDIT:
-
+                levelEditor.updateEdit();
                 break;
             case RELOAD:
                 // load a level
@@ -72,17 +76,9 @@ public class GolfGame {
             case PLAY:
                 //playerInput.keyHandler(key, keycode, false);
                 //golfGame.mouseReleased();
-                switch (key){
-                    case '1':
-                        gameMode = GameMode.START;
-                        break;
-                }
                 break;
             case EDIT:
-                switch (key){
-                    case '1':
-                        gameMode = GameMode.START;
-                }
+                levelEditor.keyPressedEdit(key);
                 break;
             case RELOAD:
                 break;

@@ -2,9 +2,12 @@ import core.game.GolfGame;
 import core.game.Score;
 import processing.core.PApplet;
 
+import java.awt.*;
+
 public class Main extends PApplet {
     private int WIDTH = 800, HEIGHT = 800;
     private GolfGame golfGame;
+    public static Color backgroundColor = new Color(153, 252, 255);
 
     private Score score;
     public void settings(){
@@ -19,7 +22,7 @@ public class Main extends PApplet {
 
     }
     public void draw(){
-        background(255);
+        background(backgroundColor.getRGB());
         golfGame.update();
         //score.update();
         //testGame.update();
