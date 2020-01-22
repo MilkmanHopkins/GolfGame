@@ -19,6 +19,7 @@ public class SlingShot extends Component {
         this.pos = pos;
         this.control = control;
         velocity = new PVector(0, 0);
+        length = 0;
     }
 
     @Override
@@ -35,12 +36,13 @@ public class SlingShot extends Component {
                 speed = 13;      //Limit top speed
             }
 
+
             direction = PVector.sub(pos, mouse);
             velocity.add(direction);
             velocity.limit(speed);
             length = velocity.mag();
         }else {
-            speed = 13;
+            speed = 9;
             PVector dir = new PVector(x,y);
 
             direction = PVector.sub(dir, pos);

@@ -16,11 +16,8 @@ public class Bouncy extends Component {
     public boolean isFinished() {
         return isFinished;
     }
-
     private float spacer = 0.3f;
     private BoxCollider2D boxCollider2D;
-
-
 
     public Bouncy(GameObject g, BoxCollider2D b, SlingShot slingShot){
         super(g);
@@ -44,22 +41,20 @@ public class Bouncy extends Component {
 
                 }else if (b.gameObject.getLayerType() == LayerTypes.AI){
                     //setCollisionSide(b);
-                    slingShot.Trigger(b.gameObject.position.x, b.gameObject.position.y);    //player collides with AI and bounces of it
-
-                    SlingShot collided = null;
-                    for (Component component : b.gameObject.componentList){     //AI slingShot component
-                        if (component.getClass().getSimpleName().equals("SlingShot")){
-                            collided = ((SlingShot) component);
+                    if (this.gameObject.getClass().getSimpleName().equals("Player")){
+                        slingShot.Trigger(b.gameObject.position.x, b.gameObject.position.y);    //player collides with AI and bounces of it. Moves away from AI
+                        SlingShot collided = null;
+                        for (Component component : b.gameObject.componentList){     //AI slingShot component
+                            if (component.getClass().getSimpleName().equals("SlingShot")){
+                                collided = ((SlingShot) component);
+                            }
                         }
+                        collided.Trigger(-this.gameObject.position.x, -this.gameObject.position.y);     //AI bounces of player
+                    } else /*if (this.gameObject.getClass().getSimpleName().equals("AI"))*/{
+                        setCollisionSide(b);    // AI bounce of of each other
                     }
-                    collided.Trigger(-this.gameObject.position.x, -this.gameObject.position.y);     //AI bounces of player
 
-                }/*else if (b.gameObject.getLayerType() == LayerTypes.MOVING){
-                    //setCollisionSide(b);
-                    slingShot.Trigger(b.gameObject.position.x, b.gameObject.position.y);
-                    System.out.println("timmy");
-
-                }*/ else {
+                }else {
                     // static stuff or moving
                     setCollisionSide(b);
                 }

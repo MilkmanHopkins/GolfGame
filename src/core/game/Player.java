@@ -12,7 +12,7 @@ public class Player extends Sprite {
     //public PVector origPos;     //original position
 
     public Bouncy bouncy;
-    public SlingShot golfMovement;
+    public SlingShot slingShot;
     PVector mouse;
 
    // Score score;
@@ -28,8 +28,8 @@ public class Player extends Sprite {
         boxCollider2D = new BoxCollider2D(this, w, h);
 
         //physicsComponent = new PhysicsComponent(this, boxCollider2D);
-        golfMovement = new SlingShot(this, this.position, this.bouncy, true);
-        bouncy = new Bouncy(this, boxCollider2D, golfMovement);
+        slingShot = new SlingShot(this, this.position, this.bouncy, true);
+        bouncy = new Bouncy(this, boxCollider2D, slingShot);
 
         //origPos = this.position;
 
@@ -38,10 +38,13 @@ public class Player extends Sprite {
     @Override
     public void update() {
         super.update();
+
         if(bouncy.isFinished()){
-        Score.Instance.textFinish();
-          // parent.noLoop();    //Stop game
+            Score.Instance.textFinish();
+                // parent.noLoop();    //Stop game
         }
+
+
 
         //System.out.println(playerInput.length);
         //System.out.println(physicsComponent.velocity);
@@ -61,11 +64,9 @@ public class Player extends Sprite {
 
 
         if(parent.mousePressed) {
-            //parent.line(mouse.x, mouse.y, this.position.x, this.position.y);
-            golfMovement.setSpeed(0);//reset speed
-            //golfMovement.setLength(0);//stop movement
+            parent.line(mouse.x, mouse.y, this.position.x, this.position.y);
+            slingShot.setSpeed(0);       //reset speed
+            //slingShot.setLength(0);    //stop movement
         }
     }
-
-
 }

@@ -12,169 +12,94 @@ import java.util.ArrayList;
 
 public class GolfGame {
     public PApplet parent;
-    private GameManager game_manager;
-    Goal goal;
 
-    RayCast rayCast;
+    LevelEditor levelEditor;
+    GameMode gameMode = GameMode.START;
+    private Score score;
 
-    SideWalls leftSideWall;
-    SideWalls rightSideWall;
-    SideWalls bottomWall;
-    SideWalls topWall;
 
-    Platform obstacle1;
-    Platform obstacle2;
-    Platform obstacle3;
-    Platform[] obstacles;
-    public String itemType;
-    //public TileGrid tileGrid;
-    private DataManager dataManager;
-    public ArrayList<Sprite> addedSprites;
-
-    public Tile[][] tiles;
-    public Tile tile;
-    private int tileSize = 40;
-
-    AI ai;
-
-    public Player player;
     public GolfGame(PApplet p){
         this.parent = p;
     }
-    public void start(){
-        itemType = "Platform";
-        dataManager = new DataManager(this.parent);
-        game_manager = new GameManager(this.parent);
-        dataManager.load();
-        addedSprites = new ArrayList<>();
-        //inputController = new InputController(this.parent);
-        goal = new Goal(this.parent, 400,40,40,40);
 
-        rayCast = new RayCast(this.parent);
-
-
-        //tileGrid = new TileGrid();        //Needs to put in game engine AI
-        tiles = new Tile[20][20];
-
-        for (int i = 1; i < tiles.length; i++) {      // Call all tiles
-            for (int j = 1; j < tiles.length; j++) {
-                tiles[i][j] = new Tile(this.parent, i * tileSize, j * tileSize, tileSize, tileSize);
-                //tiles[i][j].gridCollisionDetection = new GridCollisionDetection(tiles[i][j], boxCollider2D);
-                //this.parent.rect(i * 25, j * 25, 25, 25);
-                game_manager.add_game_object(tiles[i][j]);      //Add tiles to game manager
-            }
-        }
-        // add player
-        player = new Player(this.parent, 600,750, 30, 30);
-
-        obstacle1 = new Platform(this.parent, 400, 400, 200, 200);
-
-
-
-
-
-        ai = new AI(this.parent, 100, 50, 30, 30);
-        game_manager.add_game_object(player);
-        game_manager.add_game_object(ai);
-
-
-        leftSideWall = new SideWalls(this.parent, 1,400, 50, 2000);
-        rightSideWall = new SideWalls(this.parent, 799, 400, 50, 2000);
-        bottomWall = new SideWalls(this.parent, 400, 799, 1000, 50);
-        topWall = new SideWalls(this.parent, 400, 1, 1000, 50);
-
-        game_manager.add_game_object(goal);
-       // game_manager.add_game_object(obstacle1);
-
-        game_manager.add_game_object(leftSideWall);
-        game_manager.add_game_object(rightSideWall);
-        game_manager.add_game_object(bottomWall);
-        game_manager.add_game_object(topWall);
-    }
-
-    public void reset(){
-        parent.clear();
-        addedSprites.clear();
-    }
-
-    public void createObject(int x, int y){
-        Sprite sprite;
-        switch(itemType){
-            case "Platform" :
-                sprite = new Platform(this.parent, x, y, 40, 40);
-                game_manager.add_game_object(sprite);
-                addedSprites.add(sprite);
+    public void mouseReleased(){
+        switch (gameMode){
+            case START:
                 break;
-            case "Goal" :
-                sprite = new Goal(this.parent, x, y, 30, 30);
-                game_manager.add_game_object(sprite);
-                addedSprites.add(sprite);
+            case PLAY:
+                //playerInput.keyHandler(key, keycode, true);
+                levelEditor.mouseReleased();
+                break;
+            case EDIT:
+                break;
+            case RELOAD:
                 break;
         }
     }
 
-    public void save(){
-        dataManager.save(addedSprites, "level1");
-        reset();
-
-    }
-
-    public void load(){
-        JSONArray savedSprites = dataManager.game_data.getJSONArray("level1");
-        for (int i = 0; i < savedSprites.size(); i++){
-            JSONObject jsonObject = (JSONObject) savedSprites.get(i);
-            itemType = jsonObject.getString("itemType");
-            createObject(jsonObject.getInt("x"), jsonObject.getInt("y"));
-        }
-    }
-
-    public void keyPressed(char key){
-        switch (key){
-            case 'p' :
-                itemType = "Platform";
-                createObject(parent.mouseX, parent.mouseY);
-                break;
-            case 'g' :
-                itemType = "Goal";
-                createObject(parent.mouseX, parent.mouseY);
-                break;
-            case 's' :
-                save();
-                break;
-            case 'l' :
-                load();
-                break;
-        }
-    }
     public void update(){
-        for (int i = 1; i < tiles.length; i++) {     //Update all tiles
-            for (int j = 1; j < tiles.length; j++) {
-                this.tiles[i][j].update();
-                tile = tiles[i][j];
-           }
-        }
-        game_manager.update();
+        score.update();
+        switch (gameMode){
+            case START:
+                welcome_screen();
+                break;
+            case PLAY:
+                break;
+            case EDIT:
 
-        if(!ExternalRayHit(addedSprites)){
-            if(ai.slingShot.getLength() == 0){
-                //ai.slingShot.Trigger((int)player.position.x, (int)player.position.y);
-            }
+                break;
+            case RELOAD:
+                // load a level
+                gameMode = GameMode.PLAY;
+                break;
         }
     }
 
-    public boolean ExternalRayHit(ArrayList<Sprite> platformCheck){
-        Sprite platform = null;
-        for (Sprite sprite : platformCheck){     //AI slingShot component
-            if (sprite.getClass().getSimpleName().equals("Platform")){
-                platform = ((Platform) sprite);
-            }
-            rayCast.update( ai.position.x, ai.position.y, player.position.x, player.position.y, platform.position.x, platform.position.y, platform.size.x, platform.size.y);
-            System.out.println(rayCast.isHit());
-            if (rayCast.isHit()) {
-                return true;
-            }
+    public void keyReleased(char key, int keycode){
+        switch (gameMode){
+            case START:
+                switch (key){
+                    case '1':
+                        System.out.println("open edit mode");
+                        gameMode = GameMode.EDIT;
+
+                        break;
+                    default:
+                        gameMode = GameMode.RELOAD;
+                        break;
+                }
+                break;
+            case PLAY:
+                //playerInput.keyHandler(key, keycode, false);
+                //golfGame.mouseReleased();
+                switch (key){
+                    case '1':
+                        gameMode = GameMode.START;
+                        break;
+                }
+                break;
+            case EDIT:
+                switch (key){
+                    case '1':
+                        gameMode = GameMode.START;
+                }
+                break;
+            case RELOAD:
+                break;
         }
-        return false;
     }
+    private void welcome_screen(){
+        parent.pushMatrix();
+        parent.translate(parent.width / 4, parent.height/4);
+        parent.rectMode(PApplet.CORNERS);
+        parent.fill(0,255, 0);
+        parent.textSize(32);
+        parent.text("Welcome", 0,0);
+        parent.textSize(28);
+        parent.text("Press any key to play", 0,60);
+        parent.text("Press 1 key to edit", 0,120);
+        parent.popMatrix();
+    }
+
 
 }

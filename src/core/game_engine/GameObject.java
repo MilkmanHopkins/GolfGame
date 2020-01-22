@@ -21,9 +21,7 @@ public abstract class GameObject {
 
 
     public ArrayList<Component> componentList = new ArrayList<>();
-    public GameObject(){
 
-    }
     public GameObject(PApplet p){
         this.parent = p;
         this.position = new PVector(0,0,0);

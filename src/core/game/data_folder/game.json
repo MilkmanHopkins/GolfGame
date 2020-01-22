@@ -2,253 +2,36 @@
   {
     "itemType": "Platform",
     "w": 40,
-    "x": 190,
+    "x": 340,
     "h": 40,
-    "y": 396
+    "y": 420
   },
   {
     "itemType": "Platform",
     "w": 40,
-    "x": 128,
+    "x": 380,
     "h": 40,
-    "y": 348
+    "y": 420
   },
   {
     "itemType": "Platform",
     "w": 40,
-    "x": 220,
+    "x": 460,
     "h": 40,
-    "y": 338
+    "y": 420
   },
   {
     "itemType": "Platform",
     "w": 40,
-    "x": 283,
+    "x": 540,
     "h": 40,
-    "y": 347
+    "y": 420
   },
   {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 349,
-    "h": 40,
-    "y": 360
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 179,
-    "h": 40,
-    "y": 361
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 141,
-    "h": 40,
-    "y": 355
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 168,
-    "h": 40,
-    "y": 361
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 36,
-    "h": 40,
-    "y": 152
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 83,
-    "h": 40,
-    "y": 154
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 144,
-    "h": 40,
-    "y": 155
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 206,
-    "h": 40,
-    "y": 155
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 265,
-    "h": 40,
-    "y": 155
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 346,
-    "h": 40,
-    "y": 154
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 367,
-    "h": 40,
-    "y": 152
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 271,
-    "h": 40,
-    "y": 152
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 245,
-    "h": 40,
-    "y": 155
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 309,
-    "h": 40,
-    "y": 156
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 312,
-    "h": 40,
-    "y": 154
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 181,
-    "h": 40,
-    "y": 154
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 171,
-    "h": 40,
-    "y": 154
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 115,
-    "h": 40,
-    "y": 154
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 64,
-    "h": 40,
-    "y": 152
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 440,
-    "h": 40,
-    "y": 541
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 480,
-    "h": 40,
-    "y": 553
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 502,
-    "h": 40,
-    "y": 544
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 532,
-    "h": 40,
-    "y": 543
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 562,
-    "h": 40,
-    "y": 544
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 603,
-    "h": 40,
-    "y": 545
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 631,
-    "h": 40,
-    "y": 545
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 680,
-    "h": 40,
-    "y": 543
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 698,
-    "h": 40,
-    "y": 541
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 730,
-    "h": 40,
-    "y": 541
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 752,
-    "h": 40,
-    "y": 538
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 764,
-    "h": 40,
-    "y": 537
-  },
-  {
-    "itemType": "Platform",
-    "w": 40,
-    "x": 657,
-    "h": 40,
-    "y": 546
+    "itemType": "AI",
+    "w": 30,
+    "x": 276,
+    "h": 30,
+    "y": 300
   }
 ]}
