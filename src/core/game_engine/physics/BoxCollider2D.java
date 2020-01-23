@@ -36,6 +36,9 @@ public class BoxCollider2D extends Component {
 
         this.bounds.updateBounds(gameObject.position.x, gameObject.position.y);
         this.mouse_over = this.bounds.pointHit(this.gameObject.parent.mouseX, this.gameObject.parent.mouseY);
+        if(mouse_over){
+            System.out.println(gameObject.getClass().getSimpleName());
+        }
     }
 
     public void check_collisions(BoxCollider2D other) {
@@ -79,6 +82,4 @@ public class BoxCollider2D extends Component {
         }
 
     }
-
-
 }

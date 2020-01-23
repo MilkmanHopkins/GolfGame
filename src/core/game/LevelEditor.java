@@ -11,54 +11,58 @@ import java.util.ArrayList;
 
 public class LevelEditor {
 
-    PApplet parent;
-    RayCast rayCast;
-    LevelManager levelManager;
-    public Tile[][] tiles;
-    private int tileSize = 40;
+    private PApplet parent;
+    private RayCast rayCast;
+    private LevelManager levelManager;
+    public int level;
 
     public LevelEditor(PApplet p){
+        level = 1;
         this.parent = p;
         rayCast = new RayCast(this.parent);
         levelManager = new LevelManager(p);
-
-    }
-
-    public void start(){
-        //tileGrid = new TileGrid();        //Needs to put in game engine AI
-        tiles = new Tile[20][20];
-
-        for (int i = 1; i < tiles.length; i++) {      // Call all tiles
-            for (int j = 1; j < tiles.length; j++) {
-                tiles[i][j] = new Tile(this.parent, i * tileSize, j * tileSize, tileSize, tileSize);
-                //tiles[i][j].gridCollisionDetection = new GridCollisionDetection(tiles[i][j], boxCollider2D);
-                //this.parent.rect(i * 25, j * 25, 25, 25);
-                levelManager.getGame_manager().add_game_object(tiles[i][j]);      //Add tiles to game manager
-            }
-        }
-
-        // Sidewalls
-
     }
 
     public void updatePlay(){
         levelManager.getGame_manager().update();
         AiUpdate();
-        /*for (int i = 1; i < tiles.length; i++) {     //Update all tiles
-            for (int j = 1; j < tiles.length; j++) {
-                this.tiles[i][j].update();
-                //tile = tiles[i][j];
-            }
-        }*/
     }
 
     public void updateEdit(){
         levelManager.getGame_manager().update();
+
     }
 
     public void mouseReleased(){
         levelManager.getPlayer().slingShot.Trigger(parent.mouseX, parent.mouseY);
     }
+
+    public void levelSelect(){
+        if(parent.mouseX > 0 && parent.mouseX < 80 && parent.mouseY > 400 && parent.mouseY < 480){
+            level = 1;
+        }else if(parent.mouseX > 80 && parent.mouseX < 160 && parent.mouseY > 400 && parent.mouseY < 480){
+            level = 2;
+        }else if(parent.mouseX > 160 && parent.mouseX < 240 && parent.mouseY > 400 && parent.mouseY < 480){
+            level = 3;
+        }else if(parent.mouseX > 240 && parent.mouseX < 320 && parent.mouseY > 400 && parent.mouseY < 480){
+            level = 4;
+        }else if(parent.mouseX > 320 && parent.mouseX < 400 && parent.mouseY > 400 && parent.mouseY < 480){
+            level = 5;
+        }else if(parent.mouseX > 400 && parent.mouseX < 480 && parent.mouseY > 400 && parent.mouseY < 480){
+            level = 6;
+        }else if(parent.mouseX > 480 && parent.mouseX < 560 && parent.mouseY > 400 && parent.mouseY < 480){
+            level = 7;
+        }else if(parent.mouseX > 560 && parent.mouseX < 640 && parent.mouseY > 400 && parent.mouseY < 480){
+            level = 8;
+        }else if(parent.mouseX > 640 && parent.mouseX < 720 && parent.mouseY > 400 && parent.mouseY < 480){
+            level = 9;
+        }else if(parent.mouseX > 720 && parent.mouseX < 800 && parent.mouseY > 400 && parent.mouseY < 480){
+            level = 10;
+        }
+
+        levelManager.load(level);
+    }
+
 
 
     public void keyPressedEdit(char key){
@@ -75,7 +79,7 @@ public class LevelEditor {
                 levelManager.save();
                 break;
             case 'l' :
-                levelManager.load();
+                levelManager.load(level);
                 break;
             case 'a':
                 levelManager.itemType = "AI";
@@ -85,10 +89,13 @@ public class LevelEditor {
                 levelManager.itemType = "Player";
                 levelManager.createObject(parent.mouseX, parent.mouseY);
                 break;
+            case 'd':
+                levelManager.remove();
+                break;
         }
     }
 
-    public void AiUpdate(){
+    private void AiUpdate(){
         AI enemy;
         for(Sprite sprite : levelManager.getGame_manager().getGame_objects()){
             if(sprite.getClass().getSimpleName().equals("AI")){
@@ -102,7 +109,7 @@ public class LevelEditor {
         }
     }
 
-    public boolean ExternalRayHit(AI ai, ArrayList<Sprite> platformCheck){
+    private boolean ExternalRayHit(AI ai, ArrayList<Sprite> platformCheck){
         Sprite platform;
         for (Sprite sprite : platformCheck){     //AI slingShot component
             if (sprite.getClass().getSimpleName().equals("Platform")){

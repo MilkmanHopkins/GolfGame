@@ -1,6 +1,6 @@
 package core.game;
 
-import core.game_engine.AI.RayCast;
+import core.game_engine.AI.Tile;
 import core.game_engine.GameManager;
 import core.game_engine.Sprite;
 import core.game_engine.data_management.DataManager;
@@ -18,7 +18,8 @@ public class LevelManager {
 
     private GameManager game_manager;
     PApplet parent;
-    Player player;
+    private Player player;
+    private int tileSize = 40;
 
     public GameManager getGame_manager() {
         return game_manager;
@@ -26,18 +27,28 @@ public class LevelManager {
 
     public LevelManager(PApplet p){
         parent = p;
+
         itemType = "Platform";
         dataManager = new DataManager(this.parent);
         game_manager = new GameManager(this.parent);
         dataManager.load();
-        addedSprites = new ArrayList<>();
+        tileStart();
         //Player out of sight
         player = new Player(p, -200, -200, 30, 30);
         game_manager.add_game_object(player);
+        addedSprites = new ArrayList<>();
+
+
     }
-
-    public void addPlayer(int x, int y){
-
+    // Gives some visual feedback to the player
+    public void tileStart(){
+        Tile[][] tiles = new Tile[20][20];
+        for (int i = 1; i < tiles.length; i++) {      // Call all tiles
+            for (int j = 1; j < tiles.length; j++) {
+                tiles[i][j] = new Tile(this.parent, i * tileSize, j * tileSize, tileSize, tileSize);
+                getGame_manager().add_game_object(tiles[i][j]);      //Add tiles to game manager
+            }
+        }
     }
 
     public Player getPlayer() {
@@ -76,11 +87,29 @@ public class LevelManager {
     }
 
     public void save(){
-        dataManager.save(addedSprites, "level1", player);
+        dataManager.save(addedSprites, "level", player);
     }
 
-    public void load(){
-        JSONArray savedSprites = dataManager.game_data.getJSONArray("level1");
+    public void remove(){
+        for(int i = 0; i < game_manager.getGame_objects().size(); i++){
+            Sprite gA = game_manager.getGame_objects().get(i);
+            if(gA.boxCollider2D.mouse_over){
+                game_manager.getGame_objects().remove(i);
+            }
+        }
+        for(int i = 0; i < addedSprites.size(); i++){
+            Sprite gA = addedSprites.get(i);
+            if(gA.boxCollider2D.mouse_over){
+                addedSprites.remove(i);
+            }
+        }
+
+    }
+
+    public void load(int level){
+        dataManager.setLoad_game_file(level);
+        dataManager.load();
+        JSONArray savedSprites = dataManager.game_data.getJSONArray("level");
         for (int i = 0; i < savedSprites.size(); i++){
             JSONObject jsonObject = (JSONObject) savedSprites.get(i);
             itemType = jsonObject.getString("itemType");

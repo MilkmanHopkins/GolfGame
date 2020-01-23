@@ -34,13 +34,13 @@ public class RayCast {
         if(hit){
             parent.fill(255,150,0);
             //System.out.println("x =" + sx + " y =" + sy + " size X ="+ sw + " size Y" + sh);
-            System.out.println("HIT");
+            //System.out.println("HIT");
         }else {
             //System.out.println(hit);
             parent.fill(0,150,255);
         }
         parent.stroke(0, 150);
-        parent.line(x1,y1,x2,y2);
+        //parent.line(x1,y1,x2,y2);
 
     }
     boolean lineRect(float x1, float y1, float x2, float y2, float rx, float ry, float rw, float rh) {
@@ -71,7 +71,7 @@ public class RayCast {
             float intersectionY = y1 + (uA * (y2-y1));
             parent.fill(255,0,0);
             parent.noStroke();
-            parent.ellipse(intersectionX, intersectionY, 20, 20);
+            //parent.ellipse(intersectionX, intersectionY, 20, 20);
 
             return true;
         }

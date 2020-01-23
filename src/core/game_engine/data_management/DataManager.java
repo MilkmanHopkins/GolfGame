@@ -21,11 +21,13 @@ public class DataManager {
     public void save(ArrayList<Sprite> json_list, String nameOfList, Sprite player){
         // list of objects with a name
         JSONArray new_list = new JSONArray();
+
         for(Serializable serialJson : json_list){
             // add to list
             new_list.append(serialJson.serializeToJSON());
         }
         new_list.append(player.serializeToJSON());
+
         this.game_data.setJSONArray(nameOfList, new_list);
         parent.saveJSONObject(this.game_data, data_folder+load_game_file);
     }
@@ -36,7 +38,7 @@ public class DataManager {
         return null;
     }
 
-    public void setLoad_game_file(String load_game_file) {
-        this.load_game_file = load_game_file;
+    public void setLoad_game_file(int load_game_file) {
+        this.load_game_file = "hole"+ load_game_file + ".json";
     }
 }

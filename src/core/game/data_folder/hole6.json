@@ -1,0 +1,156 @@
+{"level": [
+  {
+    "itemType": "AI",
+    "w": 30,
+    "x": 81,
+    "h": 30,
+    "y": 725
+  },
+  {
+    "itemType": "AI",
+    "w": 30,
+    "x": 190,
+    "h": 30,
+    "y": 727
+  },
+  {
+    "itemType": "AI",
+    "w": 30,
+    "x": 348,
+    "h": 30,
+    "y": 727
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 540,
+    "h": 40,
+    "y": 580
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 540,
+    "h": 40,
+    "y": 620
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 540,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 540,
+    "h": 40,
+    "y": 700
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 540,
+    "h": 40,
+    "y": 740
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 540,
+    "h": 40,
+    "y": 780
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 580,
+    "h": 40,
+    "y": 20
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 580,
+    "h": 40,
+    "y": 60
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 580,
+    "h": 40,
+    "y": 100
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 580,
+    "h": 40,
+    "y": 100
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 580,
+    "h": 40,
+    "y": 140
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 620,
+    "h": 40,
+    "y": 180
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 20,
+    "h": 40,
+    "y": 340
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 60,
+    "h": 40,
+    "y": 300
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 100,
+    "h": 40,
+    "y": 260
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 140,
+    "h": 40,
+    "y": 220
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 180,
+    "h": 40,
+    "y": 180
+  },
+  {
+    "itemType": "Goal",
+    "w": 30,
+    "x": 74,
+    "h": 30,
+    "y": 83
+  },
+  {
+    "itemType": "Player",
+    "w": 30,
+    "x": 661,
+    "h": 30,
+    "y": 741
+  }
+]}

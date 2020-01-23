@@ -7,12 +7,17 @@ public class Score {
     public static Score Instance;
     PApplet parent;
     String finishText;
-    public int strokeNum;
+    private int strokeNum;
 
     public Score(PApplet p){
         this.parent = p;
         Instance = this;
     }
+
+    public void mouseReleased(){
+        strokeNum += 1;
+    }
+
     public void update(){
 
         if(strokeNum == 1){
@@ -36,16 +41,20 @@ public class Score {
     }
 
     public void textOnScreen(){
+        parent.pushMatrix();
         parent.textSize(30);
         parent.fill(0);
-        parent.text("Stroke = " + strokeNum, 10, 25);
+        parent.text("Stroke = " + strokeNum, 100, 10);
+        parent.popMatrix();
     }
 
     public void textFinish(){
+        parent.pushMatrix();
         parent.textSize(80);
         parent.fill(0);
-        parent.textAlign(parent.CENTER, parent.CENTER);
+        parent.textAlign(parent.CENTER, 300);
         parent.text(finishText, 400, 500);
+        parent.popMatrix();
 
     }
 }
