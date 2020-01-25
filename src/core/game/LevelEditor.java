@@ -19,6 +19,7 @@ public class LevelEditor {
     private LevelManager levelManager;
     public int level;
     public boolean isPressed = false;
+    private boolean missClick = true;
 
     public LevelEditor(PApplet p){
         level = 1;
@@ -48,7 +49,7 @@ public class LevelEditor {
     }
 
     public void debugRay(){
-        if(parent.mouseX > 350 && parent.mouseX < 450 && parent.mouseY > 300 && parent.mouseY < 380){
+        if(parent.mouseX > 350 && parent.mouseX < 450 && parent.mouseY > 370 && parent.mouseY < 300){
             if(!isPressed){
                 rayCast.setDebugRay(true);
                 isPressed = true;
@@ -63,27 +64,43 @@ public class LevelEditor {
         return rayCast;
     }
 
+    public boolean isMissClick() {
+        return missClick;
+    }
+
     public void levelSelect(){
         if(parent.mouseX > 0 && parent.mouseX < 80 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 1;
+            missClick = false;
         }else if(parent.mouseX > 80 && parent.mouseX < 160 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 2;
+            missClick = false;
         }else if(parent.mouseX > 160 && parent.mouseX < 240 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 3;
+            missClick = false;
         }else if(parent.mouseX > 240 && parent.mouseX < 320 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 4;
+            missClick = false;
         }else if(parent.mouseX > 320 && parent.mouseX < 400 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 5;
+            missClick = false;
         }else if(parent.mouseX > 400 && parent.mouseX < 480 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 6;
+            missClick = false;
         }else if(parent.mouseX > 480 && parent.mouseX < 560 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 7;
+            missClick = false;
         }else if(parent.mouseX > 560 && parent.mouseX < 640 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 8;
+            missClick = false;
         }else if(parent.mouseX > 640 && parent.mouseX < 720 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 9;
+            missClick = false;
         }else if(parent.mouseX > 720 && parent.mouseX < 800 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 10;
+            missClick = false;
+        }else {
+            missClick = true;
         }
     }
 

@@ -27,15 +27,16 @@ public class GolfGame {
     public void mouseReleased(){
         switch (gameMode){
             case START:
+                levelEditor.debugRay();
+                if(!levelEditor.isMissClick()){
                     levelEditor.levelSelect();
-                    levelEditor.debugRay();
                     if(levelEditor.level == 10){
                         gameMode = GameMode.EDIT;
                     }else if(levelEditor.level < 10){
                         //gameMode = GameMode.PLAY;
                         gameMode = GameMode.RELOAD;
                     }
-
+                }
                 break;
             case PLAY:
                 if(!levelEditor.levelFinish()){
@@ -56,6 +57,8 @@ public class GolfGame {
         if(parent.mouseX > 350 && parent.mouseX < 450 && parent.mouseY > 300 && parent.mouseY < 380){
             System.out.println("NYT");
         }
+        System.out.println(parent.mouseY);
+        levelEditor.levelSelect();
         switch (gameMode){
             case START:
                 welcome_screen();
@@ -150,14 +153,23 @@ public class GolfGame {
 
     private void welcome_screen(){
 
+
+
+        //RayCast switch
         parent.pushMatrix();
         if(levelEditor.getRayCast().isDebugRay()){
             parent.fill(255,0,0);
         }else {parent.fill(0);}
         parent.textSize(20);
         parent.textAlign(parent.CENTER, parent.CENTER);
+        parent.rect(400, 260, 100, 60);
+        parent.popMatrix();
+
+        parent.pushMatrix();
+        parent.fill(0);
         parent.text( "RayCast",400, 260);
         parent.popMatrix();
+
 
         //Level score text
         parent.pushMatrix();
