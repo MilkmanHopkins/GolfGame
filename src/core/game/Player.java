@@ -31,18 +31,23 @@ public class Player extends Sprite {
         slingShot = new SlingShot(this, this.position, this.bouncy, true);
         bouncy = new Bouncy(this, boxCollider2D, slingShot);
 
-        //origPos = this.position;
 
+    }
+
+    public boolean finishedLevel(){
+        if(bouncy.isFinished()){
+            Score.Instance.textFinish();
+            return true;
+
+        }
+        return false;
     }
 
     @Override
     public void update() {
         super.update();
 
-        if(bouncy.isFinished()){
-            Score.Instance.textFinish();
-                // parent.noLoop();    //Stop game
-        }
+
 
 
 

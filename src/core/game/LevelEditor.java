@@ -3,11 +3,14 @@ package core.game;
 import core.game_engine.AI.RayCast;
 import core.game_engine.AI.Tile;
 import core.game_engine.Sprite;
+import core.game_engine.data_management.Serializable;
 import processing.core.PApplet;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
 
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Timer;
 
 public class LevelEditor {
 
@@ -30,11 +33,17 @@ public class LevelEditor {
 
     public void updateEdit(){
         levelManager.getGame_manager().update();
-
     }
 
     public void mouseReleased(){
         levelManager.getPlayer().slingShot.Trigger(parent.mouseX, parent.mouseY);
+    }
+
+    public boolean levelFinish(){
+        if(levelManager.getPlayer().finishedLevel()){
+            return true;
+        }
+        return false;
     }
 
     public void levelSelect(){
@@ -59,10 +68,12 @@ public class LevelEditor {
         }else if(parent.mouseX > 720 && parent.mouseX < 800 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 10;
         }
-
-        levelManager.load(level);
     }
 
+    public void loadLevel(){
+        levelManager = new LevelManager(parent);
+        levelManager.load(level);
+    }
 
 
     public void keyPressedEdit(char key){

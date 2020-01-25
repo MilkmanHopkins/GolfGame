@@ -2,6 +2,7 @@ package core.game;
 
 import core.game_engine.physics.Bouncy;
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 public class Score {
     public static Score Instance;
@@ -12,6 +13,13 @@ public class Score {
     public Score(PApplet p){
         this.parent = p;
         Instance = this;
+    }
+    public void setStrokeNum(int strokeNum){
+        this.strokeNum = strokeNum;
+    }
+
+    public int getStrokeNum(){
+        return strokeNum;
     }
 
     public void mouseReleased(){
@@ -44,7 +52,8 @@ public class Score {
         parent.pushMatrix();
         parent.textSize(30);
         parent.fill(0);
-        parent.text("Stroke = " + strokeNum, 100, 10);
+        parent.textAlign(parent.CENTER);
+        parent.text("Stroke = " + strokeNum, 100, 25);
         parent.popMatrix();
     }
 
@@ -52,6 +61,7 @@ public class Score {
         parent.pushMatrix();
         parent.textSize(80);
         parent.fill(0);
+        //parent.textAlign(parent.CENTER, 300);
         parent.textAlign(parent.CENTER, 300);
         parent.text(finishText, 400, 500);
         parent.popMatrix();
