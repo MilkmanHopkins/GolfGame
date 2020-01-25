@@ -17,6 +17,7 @@ public class RayCast {
 
     private PVector position;
     private PVector size;
+    private boolean isDebugRay = false;
 
     PApplet parent;
     public RayCast(PApplet p){
@@ -39,8 +40,11 @@ public class RayCast {
             //System.out.println(hit);
             parent.fill(0,150,255);
         }
-        parent.stroke(0, 150);
-        //parent.line(x1,y1,x2,y2);
+        if(isDebugRay){
+            parent.stroke(0, 150);
+            parent.line(x1,y1,x2,y2);
+        }
+
 
     }
     boolean lineRect(float x1, float y1, float x2, float y2, float rx, float ry, float rw, float rh) {
@@ -69,10 +73,11 @@ public class RayCast {
         if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1) {
             float intersectionX = x1 + (uA * (x2-x1));
             float intersectionY = y1 + (uA * (y2-y1));
-            parent.fill(255,0,0);
-            parent.noStroke();
-            //parent.ellipse(intersectionX, intersectionY, 20, 20);
-
+            if(isDebugRay){
+                parent.fill(255,0,0);
+                parent.noStroke();
+                parent.ellipse(intersectionX, intersectionY, 20, 20);
+            }
             return true;
         }
         return false;
@@ -81,5 +86,11 @@ public class RayCast {
         return hit;
     }
 
+    public void setDebugRay(boolean debugRay) {
+        isDebugRay = debugRay;
+    }
 
+    public boolean isDebugRay() {
+        return isDebugRay;
+    }
 }

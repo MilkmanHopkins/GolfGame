@@ -1,9 +1,5 @@
 package core.game;
 import processing.core.PApplet;
-import processing.core.PVector;
-
-import java.util.ArrayList;
-import java.util.Timer;
 
 public class GolfGame {
     public PApplet parent;
@@ -18,22 +14,24 @@ public class GolfGame {
     //private int[] levelScore;
 
     private int[] levelScore;
+    private boolean showTip = false;
 
     public GolfGame(PApplet p){
         this.parent = p;
         levelEditor = new LevelEditor(p);
         score = new Score(p);
         gameMode = GameMode.START;
-        levelScore = new int[9];
+        levelScore = new int[10];
     }
 
     public void mouseReleased(){
         switch (gameMode){
             case START:
                     levelEditor.levelSelect();
+                    levelEditor.debugRay();
                     if(levelEditor.level == 10){
                         gameMode = GameMode.EDIT;
-                    }else {
+                    }else if(levelEditor.level < 10){
                         //gameMode = GameMode.PLAY;
                         gameMode = GameMode.RELOAD;
                     }
@@ -55,6 +53,9 @@ public class GolfGame {
     }
 
     public void update(){
+        if(parent.mouseX > 350 && parent.mouseX < 450 && parent.mouseY > 300 && parent.mouseY < 380){
+            System.out.println("NYT");
+        }
         switch (gameMode){
             case START:
                 welcome_screen();
@@ -62,13 +63,26 @@ public class GolfGame {
             case PLAY:
                 levelEditor.updatePlay();
                 score.update();
+                if(showTip){
+                    parent.pushMatrix();
+                    parent.fill(0);
+                    parent.textSize(50);
+                    parent.textAlign(parent.CENTER, 200);
+                    parent.text("Press '1' back to level select", 400, 400);
+                    parent.popMatrix();
+                }
                 // Switch level after finishing
                 if(levelEditor.levelFinish()){
                     time += 1;
                     if(time > 150){
+                        //save score for hole nine (level 9)
+                        if(levelEditor.level < 10){
+                            levelScore[levelEditor.level - 1] = score.getStrokeNum();
+                        }
+                        //If there are levels left
                         if(levelEditor.level < 9){
                             // load next level
-                            levelScore[levelEditor.level-1] = score.getStrokeNum();
+
                             levelEditor.level += 1;
                             gameMode = GameMode.RELOAD;
                             score.setStrokeNum(0);
@@ -86,6 +100,7 @@ public class GolfGame {
                 // load a level
                 levelEditor.loadLevel();
                 // Reset time for level switch
+                showTip = false;
                 time = 0;
                 gameMode = GameMode.PLAY;
                 break;
@@ -97,17 +112,17 @@ public class GolfGame {
             case START:
                 switch (key){
                     case '1':
-                        //System.out.println("open edit mode");
                         gameMode = GameMode.EDIT;
-
                         break;
-
                 }
                 break;
             case PLAY:
                 switch (key){
                     case '1':
                         gameMode = GameMode.START;
+                        break;
+                    default:
+                        showTip = false;
                         break;
                 }
                 break;
@@ -124,15 +139,7 @@ public class GolfGame {
             case START:
                 break;
             case PLAY:
-                switch (key){
-                    default:
-                        parent.pushMatrix();
-                        parent.fill(0);
-                        parent.textSize(50);
-                        parent.textAlign(parent.CENTER, 200);
-                        parent.text("Press '1' back to level select", 400, 400);
-                        parent.popMatrix();
-                }
+                showTip = true;
                 break;
             case EDIT:
                 break;
@@ -143,15 +150,32 @@ public class GolfGame {
 
     private void welcome_screen(){
 
-        //Level score
+        parent.pushMatrix();
+        if(levelEditor.getRayCast().isDebugRay()){
+            parent.fill(255,0,0);
+        }else {parent.fill(0);}
+        parent.textSize(20);
+        parent.textAlign(parent.CENTER, parent.CENTER);
+        parent.text( "RayCast",400, 260);
+        parent.popMatrix();
+
+        //Level score text
         parent.pushMatrix();
         parent.fill(0);
         parent.textSize(30);
-        parent.textAlign(parent.LEFT, parent.CENTER);
-        parent.text( "Score on each hole" + printElements(levelScore),20, 550);
+        parent.textAlign(parent.CENTER, parent.CENTER);
+        parent.text( "Score on each hole ",400, 600);
         parent.popMatrix();
 
-        //Track score
+        //Level score index
+        parent.pushMatrix();
+        parent.fill(0);
+        parent.textSize(30);
+        parent.textAlign(parent.CENTER, parent.CENTER);
+        parent.text( "" + printElements(levelScore),320, 500);
+        parent.popMatrix();
+
+        //Track score text
         parent.pushMatrix();
         parent.fill(0);
         parent.textSize(30);
@@ -159,7 +183,7 @@ public class GolfGame {
         parent.text("Track Score = " + sum(levelScore) , 20, 750);
         parent.popMatrix();
 
-        //Select level
+        //Select level text
         parent.pushMatrix();
         parent.fill(0);
         parent.textSize(40);
@@ -184,22 +208,26 @@ public class GolfGame {
         parent.textSize(20);
         parent.text("Edit", 750, 440);
         for(int i = 1; i < 10; i++){
-            //parent.textAlign(size * i - 1000, 440);
             parent.text("Hole " + i, 80 * i - 40, 440);
         }
         parent.popMatrix();
 
     }
-
+    //Score for each hole
     private int sum(int[] arr){
         int num = 0;
-        for (int i = 0; i < arr.length - 1; i++){ num += arr[i]; }
+        for (int i = 0; i < arr.length - 1; i++){
+            num += arr[i];
+        }
         return num;
     }
-
+    // Track score
     private String printElements(int[] arr){
         String result = "";
-        for (int i = 0; i < arr.length - 1; i++) { result += "     ";  result+= arr[i];  }
+        for (int i = 0; i < arr.length - 1; i++) {
+            result += "        ";
+            result+= arr[i];
+        }
         return result;
     }
 

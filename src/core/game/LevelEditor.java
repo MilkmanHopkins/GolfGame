@@ -18,6 +18,7 @@ public class LevelEditor {
     private RayCast rayCast;
     private LevelManager levelManager;
     public int level;
+    public boolean isPressed = false;
 
     public LevelEditor(PApplet p){
         level = 1;
@@ -44,6 +45,22 @@ public class LevelEditor {
             return true;
         }
         return false;
+    }
+
+    public void debugRay(){
+        if(parent.mouseX > 350 && parent.mouseX < 450 && parent.mouseY > 300 && parent.mouseY < 380){
+            if(!isPressed){
+                rayCast.setDebugRay(true);
+                isPressed = true;
+            }else if(isPressed){
+                rayCast.setDebugRay(false);
+                isPressed = false;
+            }
+        }
+    }
+
+    public RayCast getRayCast() {
+        return rayCast;
     }
 
     public void levelSelect(){

@@ -6,7 +6,7 @@ import java.awt.*;
 public class Main extends PApplet {
     private int WIDTH = 800, HEIGHT = 800;
     private GolfGame golfGame;
-    public static Color backgroundColor = new Color(153, 252, 255);
+    public static Color backgroundColor = new Color(104, 255, 161);
 
     private Score score;
     public void settings(){
@@ -16,8 +16,6 @@ public class Main extends PApplet {
     public void setup(){
         background(0);
         golfGame = new GolfGame(this);
-
-
     }
     public void draw(){
         background(backgroundColor.getRGB());
@@ -33,11 +31,9 @@ public class Main extends PApplet {
 
     public void keyReleased(){
         golfGame.keyReleased(key, keyCode);
-
     }
     public void keyPressed(){
         golfGame.keyPressed(key);
-
     }
 
 }
