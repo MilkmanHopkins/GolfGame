@@ -9,14 +9,12 @@ public class RayCast {
     private float x2;      // static point
     private float y2;
 
-    float sx;    // square position
+    private float sx;    // square position
     private float sy;
     private float sw;    // and size
     private float sh;
     boolean hit = false;
 
-    private PVector position;
-    private PVector size;
     private boolean isDebugRay = false;
 
     PApplet parent;
@@ -34,12 +32,10 @@ public class RayCast {
         hit = lineRect(x1,y1,x2,y2, sx,sy,sw,sh);
         if(hit){
             parent.fill(255,150,0);
-            //System.out.println("x =" + sx + " y =" + sy + " size X ="+ sw + " size Y" + sh);
-            //System.out.println("HIT");
         }else {
-            //System.out.println(hit);
             parent.fill(0,150,255);
         }
+        // Player can activate a debug mode for the ray cast
         if(isDebugRay){
             parent.stroke(0, 150);
             parent.line(x1,y1,x2,y2);
@@ -47,6 +43,7 @@ public class RayCast {
 
 
     }
+    //Check if a side of the rectangle collides with the line
     boolean lineRect(float x1, float y1, float x2, float y2, float rx, float ry, float rw, float rh) {
 
         // check if the line has hit any of the rectangle's sides
@@ -63,6 +60,7 @@ public class RayCast {
         }
         return false;
     }
+
     boolean lineLine(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
 
         // calculate the direction of the lines

@@ -49,7 +49,7 @@ public class LevelEditor {
     }
 
     public void debugRay(){
-        if(parent.mouseX > 350 && parent.mouseX < 450 && parent.mouseY > 370 && parent.mouseY < 300){
+        if(parent.mouseX > 350 && parent.mouseX < 450 && parent.mouseY > 230 && parent.mouseY < 290){
             if(!isPressed){
                 rayCast.setDebugRay(true);
                 isPressed = true;
@@ -64,43 +64,35 @@ public class LevelEditor {
         return rayCast;
     }
 
-    public boolean isMissClick() {
-        return missClick;
+    public boolean outOfBounds(){
+        if(parent.mouseX > 0 && parent.mouseX < 800 && parent.mouseY > 400 && parent.mouseY < 480){
+            return false;
+        }
+        return true;
     }
 
     public void levelSelect(){
         if(parent.mouseX > 0 && parent.mouseX < 80 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 1;
-            missClick = false;
         }else if(parent.mouseX > 80 && parent.mouseX < 160 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 2;
-            missClick = false;
         }else if(parent.mouseX > 160 && parent.mouseX < 240 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 3;
-            missClick = false;
         }else if(parent.mouseX > 240 && parent.mouseX < 320 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 4;
-            missClick = false;
         }else if(parent.mouseX > 320 && parent.mouseX < 400 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 5;
-            missClick = false;
         }else if(parent.mouseX > 400 && parent.mouseX < 480 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 6;
-            missClick = false;
         }else if(parent.mouseX > 480 && parent.mouseX < 560 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 7;
-            missClick = false;
         }else if(parent.mouseX > 560 && parent.mouseX < 640 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 8;
-            missClick = false;
         }else if(parent.mouseX > 640 && parent.mouseX < 720 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 9;
-            missClick = false;
         }else if(parent.mouseX > 720 && parent.mouseX < 800 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 10;
-            missClick = false;
         }else {
-            missClick = true;
         }
     }
 
@@ -138,6 +130,29 @@ public class LevelEditor {
                 levelManager.remove();
                 break;
         }
+    }
+
+    public void show_menu(){
+        parent.pushMatrix();
+        if(parent.mouseY < 20 && parent.mouseX < 55){
+            parent.rectMode(parent.LEFT);
+            parent.fill(120, 240);
+            parent.rect(0,0, parent.width, 25);
+            parent.fill(250);
+            parent.textSize(13);
+            parent.textAlign(parent.LEFT);
+            parent.text("Edit mode: KEYS - Exit 1 | Add Platform P | Delete D | Add Goal G | Save S | Add Player B | Add Enemy A | '1' to Menu '2' to Play", 5, 15);
+
+        }else{
+            parent.fill(0,255, 0, 250);
+            parent.rect(0,0, 30, 30);
+            parent.textSize(13);
+            parent.fill(0);
+            parent.text("?", 5, 11);
+
+        }
+
+        parent.popMatrix();
     }
 
     private void AiUpdate(){

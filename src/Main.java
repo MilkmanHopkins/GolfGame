@@ -11,7 +11,6 @@ public class Main extends PApplet {
     private Score score;
     public void settings(){
         size(WIDTH, HEIGHT);
-        //fullScreen();
     }
     public void setup(){
         background(0);
@@ -30,10 +29,7 @@ public class Main extends PApplet {
     }
 
     public void keyReleased(){
-        golfGame.keyReleased(key, keyCode);
-    }
-    public void keyPressed(){
-        golfGame.keyPressed(key);
+        golfGame.keyReleased(key);
     }
 
 }

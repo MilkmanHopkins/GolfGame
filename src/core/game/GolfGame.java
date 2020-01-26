@@ -7,12 +7,7 @@ public class GolfGame {
     LevelEditor levelEditor;
     GameMode gameMode;
     private Score score;
-    // time for level switch
     private int time;
-
-    // save score for each level;
-    //private int[] levelScore;
-
     private int[] levelScore;
     private boolean showTip = false;
 
@@ -28,7 +23,8 @@ public class GolfGame {
         switch (gameMode){
             case START:
                 levelEditor.debugRay();
-                if(!levelEditor.isMissClick()){
+                // check if a button is pressed
+                if(!levelEditor.outOfBounds()){
                     levelEditor.levelSelect();
                     if(levelEditor.level == 10){
                         gameMode = GameMode.EDIT;
@@ -46,7 +42,7 @@ public class GolfGame {
 
                 break;
             case EDIT:
-                gameMode = GameMode.PLAY;
+                //gameMode = GameMode.PLAY;
                 break;
             case RELOAD:
                 break;
@@ -54,11 +50,7 @@ public class GolfGame {
     }
 
     public void update(){
-        if(parent.mouseX > 350 && parent.mouseX < 450 && parent.mouseY > 300 && parent.mouseY < 380){
-            System.out.println("NYT");
-        }
-        System.out.println(parent.mouseY);
-        levelEditor.levelSelect();
+        System.out.println(levelEditor.level);
         switch (gameMode){
             case START:
                 welcome_screen();
@@ -84,11 +76,10 @@ public class GolfGame {
                         }
                         //If there are levels left
                         if(levelEditor.level < 9){
-                            // load next level
-
+                            // switch level
                             levelEditor.level += 1;
+                            // load next level
                             gameMode = GameMode.RELOAD;
-                            score.setStrokeNum(0);
                         }else {
                             //If all levels cleared. Back to start
                             gameMode = GameMode.START;
@@ -97,27 +88,25 @@ public class GolfGame {
                 }
                 break;
             case EDIT:
+
                 levelEditor.updateEdit();
+                levelEditor.show_menu();
                 break;
             case RELOAD:
                 // load a level
                 levelEditor.loadLevel();
-                // Reset time for level switch
                 showTip = false;
+                // Reset time for level switch
                 time = 0;
+                score.setStrokeNum(0);
                 gameMode = GameMode.PLAY;
                 break;
         }
     }
 
-    public void keyReleased(char key, int keycode){
+    public void keyReleased(char key){
         switch (gameMode){
             case START:
-                switch (key){
-                    case '1':
-                        gameMode = GameMode.EDIT;
-                        break;
-                }
                 break;
             case PLAY:
                 switch (key){
@@ -130,21 +119,18 @@ public class GolfGame {
                 }
                 break;
             case EDIT:
-                levelEditor.keyPressedEdit(key);
-                break;
-            case RELOAD:
-                break;
-        }
-    }
+                switch (key){
+                    case '2':
+                        gameMode = GameMode.RELOAD;
+                        break;
+                    case '1':
+                        gameMode = GameMode.START;
+                        break;
+                    default:
+                        levelEditor.keyPressedEdit(key);
+                        break;
+                }
 
-    public void keyPressed(char key){
-        switch (gameMode){
-            case START:
-                break;
-            case PLAY:
-                showTip = true;
-                break;
-            case EDIT:
                 break;
             case RELOAD:
                 break;
@@ -153,23 +139,22 @@ public class GolfGame {
 
     private void welcome_screen(){
 
-
-
-        //RayCast switch
+        //RayCast switch button colour
         parent.pushMatrix();
+        parent.textSize(20);
         if(levelEditor.getRayCast().isDebugRay()){
             parent.fill(255,0,0);
-        }else {parent.fill(0);}
-        parent.textSize(20);
-        parent.textAlign(parent.CENTER, parent.CENTER);
+        }else {parent.fill(255);}
+        parent.rectMode(parent.CENTER);
         parent.rect(400, 260, 100, 60);
         parent.popMatrix();
 
+        //RayCast button text
         parent.pushMatrix();
         parent.fill(0);
+        parent.textAlign(parent.CENTER, parent.CENTER);
         parent.text( "RayCast",400, 260);
         parent.popMatrix();
-
 
         //Level score text
         parent.pushMatrix();
@@ -223,7 +208,6 @@ public class GolfGame {
             parent.text("Hole " + i, 80 * i - 40, 440);
         }
         parent.popMatrix();
-
     }
     //Score for each hole
     private int sum(int[] arr){
@@ -242,5 +226,4 @@ public class GolfGame {
         }
         return result;
     }
-
 }

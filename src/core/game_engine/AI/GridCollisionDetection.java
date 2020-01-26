@@ -16,16 +16,14 @@ public class GridCollisionDetection extends Component {
 
     }
 
+    // Used to detect tile collision with platforms
     @Override
     protected void update() {
         if (this.boxCollider2D.otherColliders.size() > 0) {
             for (BoxCollider2D b : this.boxCollider2D.otherColliders) {
                 if (b.gameObject.getLayerType() == LayerTypes.STATIC) {
                     isGrid = true;
-                    //System.out.println("JJJ");
                 }
-                //isGrid = true;
-                //System.out.println("JJJ");
             }
             this.boxCollider2D.otherColliders.clear();
         }
