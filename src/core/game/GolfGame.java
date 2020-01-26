@@ -153,7 +153,7 @@ public class GolfGame {
         parent.pushMatrix();
         parent.fill(0);
         parent.textAlign(parent.CENTER, parent.CENTER);
-        parent.text( "RayCast",400, 260);
+        parent.text( "RayCast" + "\n" + "debugger" ,400, 260);
         parent.popMatrix();
 
         //Level score text

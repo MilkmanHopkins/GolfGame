@@ -1,16 +1,10 @@
 package core.game;
 
-import core.game_engine.AI.RayCast;
-import core.game_engine.AI.Tile;
+import core.game_engine.physics.RayCast;
 import core.game_engine.Sprite;
-import core.game_engine.data_management.Serializable;
 import processing.core.PApplet;
-import processing.data.JSONArray;
-import processing.data.JSONObject;
 
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Timer;
 
 public class LevelEditor {
 
@@ -149,9 +143,7 @@ public class LevelEditor {
             parent.textSize(13);
             parent.fill(0);
             parent.text("?", 5, 11);
-
         }
-
         parent.popMatrix();
     }
 

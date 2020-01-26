@@ -1,4 +1,4 @@
-package core.game_engine.AI;
+package core.game_engine.physics;
 
 import processing.core.PApplet;
 import processing.core.PVector;

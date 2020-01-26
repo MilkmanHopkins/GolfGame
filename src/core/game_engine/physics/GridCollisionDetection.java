@@ -1,4 +1,4 @@
-package core.game_engine.AI;
+package core.game_engine.physics;
 
 import core.game_engine.Component;
 import core.game_engine.GameObject;

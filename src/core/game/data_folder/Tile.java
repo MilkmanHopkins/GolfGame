@@ -1,9 +1,9 @@
-package core.game_engine.AI;
+package core.game.data_folder;
 
 import core.game_engine.LayerTypes;
 import core.game_engine.Sprite;
-import core.game_engine.physics.Bouncy;
 import core.game_engine.physics.BoxCollider2D;
+import core.game_engine.physics.GridCollisionDetection;
 import processing.core.PApplet;
 import processing.core.PVector;
 

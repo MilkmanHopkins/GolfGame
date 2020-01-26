@@ -1,6 +1,6 @@
 package core.game;
 
-import core.game_engine.AI.Tile;
+import core.game.data_folder.Tile;
 import core.game_engine.GameManager;
 import core.game_engine.Sprite;
 import core.game_engine.data_management.DataManager;
@@ -80,6 +80,7 @@ public class LevelManager {
         }
         return sprite;
     }
+    //
     private int grid_placement(int num, int sizeOfGrid)
     {
         int grid = sizeOfGrid * Math.floorDiv(num, sizeOfGrid) + sizeOfGrid / 2;
