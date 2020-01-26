@@ -18,8 +18,7 @@ public class GolfGame {
         gameMode = GameMode.START;
         levelScore = new int[10];
     }
-
-
+    // Mouse Released actions
     public void mouseReleased(){
         switch (gameMode){
             case START:
@@ -38,9 +37,7 @@ public class GolfGame {
                 break;
         }
     }
-
-
-
+    // Update GameModes
     public void update(){
         System.out.println(levelEditor.level);
         switch (gameMode){
@@ -67,7 +64,6 @@ public class GolfGame {
                 break;
         }
     }
-
     public void keyReleased(char key){
         switch (gameMode){
             case START:
@@ -102,7 +98,6 @@ public class GolfGame {
                 break;
         }
     }
-
     // Show how to get back to start
     public void keyPressed(){
         switch (gameMode){
@@ -117,7 +112,7 @@ public class GolfGame {
                 break;
         }
     }
-
+    // Level select screen
     private void LevelSelect(){
 
         //RayCast switch button colour
