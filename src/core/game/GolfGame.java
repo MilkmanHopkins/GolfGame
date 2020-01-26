@@ -4,8 +4,8 @@ import processing.core.PApplet;
 public class GolfGame {
     public PApplet parent;
 
-    LevelEditor levelEditor;
-    GameMode gameMode;
+    private LevelEditor levelEditor;
+    private GameMode gameMode;
     private Score score;
     private int time;
     private int[] levelScore;
@@ -19,28 +19,18 @@ public class GolfGame {
         levelScore = new int[10];
     }
 
+
     public void mouseReleased(){
         switch (gameMode){
             case START:
-                levelEditor.debugRay();
-                // check if a button is pressed
-                if(!levelEditor.outOfBounds()){
-                    levelEditor.levelSelect();
-                    if(levelEditor.level == 10){
-                        //Level 10 is a level the player can edit
-                        gameMode = GameMode.EDIT;
-                    }else if(levelEditor.level < 10){
-                        //gameMode = GameMode.PLAY;
-                        gameMode = GameMode.RELOAD;
-                    }
-                }
+               selectLevel();
                 break;
             case PLAY:
+                // Stop score and players input when level cleared
                 if(!levelEditor.levelFinish()){
                     levelEditor.mouseReleased();
                     score.mouseReleased();
                 }
-
                 break;
             case EDIT:
                 break;
@@ -49,49 +39,16 @@ public class GolfGame {
         }
     }
 
+
+
     public void update(){
         System.out.println(levelEditor.level);
         switch (gameMode){
             case START:
-                welcome_screen();
+                LevelSelect();
                 break;
             case PLAY:
-                // updates
-                levelEditor.updatePlay();
-                score.update();
-                // how to get back to start
-                if(showTip){
-                    parent.pushMatrix();
-                    parent.fill(0);
-                    parent.textSize(50);
-                    parent.textAlign(parent.CENTER, 200);
-                    parent.text("Press '1' back to level select", 400, 400);
-                    parent.popMatrix();
-                }
-                // Switch level after finishing
-                if(levelEditor.levelFinish()){
-                    // time starts
-                    time += 1;
-                    // Save score when player hits goal
-                    //save score of completed level
-                    if(levelEditor.level < 10){
-                        // Save stroke number of cleared level
-                        levelScore[levelEditor.level - 1] = score.getStrokeNum();
-                    }
-                    if(time > 150){
-
-                        //If there are levels left
-                        if(levelEditor.level < 9){
-                            // switch level
-                            levelEditor.level += 1;
-                            // load next level
-                            gameMode = GameMode.RELOAD;
-                        }else {
-                            //If all levels cleared. Back to start
-                            gameMode = GameMode.START;
-                        }
-                    }
-                }
+              playUpdate();
                 break;
             case EDIT:
 
@@ -127,9 +84,11 @@ public class GolfGame {
                 break;
             case EDIT:
                 switch (key){
+                    // Reload level and play
                     case '2':
                         gameMode = GameMode.RELOAD;
                         break;
+                    // Back to start
                     case '1':
                         gameMode = GameMode.START;
                         break;
@@ -159,7 +118,7 @@ public class GolfGame {
         }
     }
 
-    private void welcome_screen(){
+    private void LevelSelect(){
 
         //RayCast switch button colour
         parent.pushMatrix();
@@ -248,4 +207,60 @@ public class GolfGame {
         }
         return result;
     }
+    // Level select function
+    private void selectLevel(){
+        levelEditor.debugRay();
+        // check if a button is pressed
+        if(!levelEditor.outOfBounds()){
+            levelEditor.levelSelect();
+            if(levelEditor.level == 10){
+                //Level 10 is a level the player can edit
+                gameMode = GameMode.EDIT;
+            }else if(levelEditor.level < 10){
+                //gameMode = GameMode.PLAY;
+                gameMode = GameMode.RELOAD;
+            }
+        }
+    }
+    // Updates when in GameMode PLAY
+    private void playUpdate(){
+        // updates
+        levelEditor.updatePlay();
+        score.update();
+        // how to get back to start
+        if(showTip){
+            parent.pushMatrix();
+            parent.fill(0);
+            parent.textSize(50);
+            parent.textAlign(parent.CENTER, 200);
+            parent.text("Press '1' back to level select", 400, 400);
+            parent.popMatrix();
+        }
+        // Switch level after finishing
+        if(levelEditor.levelFinish()){
+            // time starts
+            time += 1;
+            // Save score when player hits goal
+            //save score of completed level
+            if(levelEditor.level < 10){
+                // Save stroke number of cleared level
+                levelScore[levelEditor.level - 1] = score.getStrokeNum();
+            }
+            if(time > 150){
+
+                //If there are levels left
+                if(levelEditor.level < 9){
+                    // switch level
+                    levelEditor.level += 1;
+                    // load next level
+                    gameMode = GameMode.RELOAD;
+                }else {
+                    //If all levels cleared. Back to start
+                    gameMode = GameMode.START;
+                }
+            }
+        }
+    }
+
+
 }
