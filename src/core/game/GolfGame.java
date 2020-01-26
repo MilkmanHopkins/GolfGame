@@ -39,16 +39,14 @@ public class GolfGame {
     }
     // Update GameModes
     public void update(){
-        System.out.println(levelEditor.level);
         switch (gameMode){
             case START:
-                LevelSelect();
+                startMenu();
                 break;
             case PLAY:
-              playUpdate();
+                playUpdate();
                 break;
             case EDIT:
-
                 levelEditor.updateEdit();
                 levelEditor.show_menu();
                 break;
@@ -92,7 +90,6 @@ public class GolfGame {
                         levelEditor.keyPressedEdit(key);
                         break;
                 }
-
                 break;
             case RELOAD:
                 break;
@@ -112,8 +109,7 @@ public class GolfGame {
                 break;
         }
     }
-    // Level select screen
-    private void LevelSelect(){
+    private void startMenu(){
 
         //RayCast switch button colour
         parent.pushMatrix();
