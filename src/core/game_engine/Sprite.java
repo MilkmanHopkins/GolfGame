@@ -9,8 +9,6 @@ import processing.data.JSONObject;
 
 public class Sprite extends GameObject implements Serializable {
     public BoxCollider2D boxCollider2D;
-    public String name = "My Sprite";
-    public String type = "Sprite";
     public PVector size;
     public Sprite(PApplet p, float x, float y, float w, float h){
         super(p);
@@ -41,6 +39,5 @@ public class Sprite extends GameObject implements Serializable {
     public void loadJSONObject(JSONObject json) {
         this.position.x = (float)json.getInt("x");
         this.position.y = (float)json.getInt("y");
-        //this.layerType = LayerTypes.valueOf()
     }
 }

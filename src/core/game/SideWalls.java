@@ -10,6 +10,7 @@ import processing.core.PVector;
 public class SideWalls extends Sprite {
     public PVector size;
 
+    // Different walls that don't trigger the tile collision
     public SideWalls(PApplet p, int x, int y, int w, int h){
         super(p, x, y, w, h);
         this.parent = p;

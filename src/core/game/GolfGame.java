@@ -27,6 +27,7 @@ public class GolfGame {
                 if(!levelEditor.outOfBounds()){
                     levelEditor.levelSelect();
                     if(levelEditor.level == 10){
+                        //Level 10 is a level the player can edit
                         gameMode = GameMode.EDIT;
                     }else if(levelEditor.level < 10){
                         //gameMode = GameMode.PLAY;
@@ -42,7 +43,6 @@ public class GolfGame {
 
                 break;
             case EDIT:
-                //gameMode = GameMode.PLAY;
                 break;
             case RELOAD:
                 break;
@@ -56,8 +56,10 @@ public class GolfGame {
                 welcome_screen();
                 break;
             case PLAY:
+                // updates
                 levelEditor.updatePlay();
                 score.update();
+                // how to get back to start
                 if(showTip){
                     parent.pushMatrix();
                     parent.fill(0);
@@ -68,12 +70,16 @@ public class GolfGame {
                 }
                 // Switch level after finishing
                 if(levelEditor.levelFinish()){
+                    // time starts
                     time += 1;
+                    // Save score when player hits goal
+                    //save score of completed level
+                    if(levelEditor.level < 10){
+                        // Save stroke number of cleared level
+                        levelScore[levelEditor.level - 1] = score.getStrokeNum();
+                    }
                     if(time > 150){
-                        //save score for hole nine (level 9)
-                        if(levelEditor.level < 10){
-                            levelScore[levelEditor.level - 1] = score.getStrokeNum();
-                        }
+
                         //If there are levels left
                         if(levelEditor.level < 9){
                             // switch level
@@ -98,6 +104,7 @@ public class GolfGame {
                 showTip = false;
                 // Reset time for level switch
                 time = 0;
+                // Reset stroke number for next level
                 score.setStrokeNum(0);
                 gameMode = GameMode.PLAY;
                 break;
@@ -137,6 +144,21 @@ public class GolfGame {
         }
     }
 
+    // Show how to get back to start
+    public void keyPressed(){
+        switch (gameMode){
+            case START:
+                break;
+            case PLAY:
+                showTip = true;
+                break;
+            case EDIT:
+                break;
+            case RELOAD:
+                break;
+        }
+    }
+
     private void welcome_screen(){
 
         //RayCast switch button colour
@@ -153,7 +175,7 @@ public class GolfGame {
         parent.pushMatrix();
         parent.fill(0);
         parent.textAlign(parent.CENTER, parent.CENTER);
-        parent.text( "RayCast" + "\n" + "debugger" ,400, 260);
+        parent.text( "RayCast" + "\n" + "Debugger" ,400, 260);
         parent.popMatrix();
 
         //Level score text
@@ -217,7 +239,7 @@ public class GolfGame {
         }
         return num;
     }
-    // Track score
+    //Combined score
     private String printElements(int[] arr){
         String result = "";
         for (int i = 0; i < arr.length - 1; i++) {

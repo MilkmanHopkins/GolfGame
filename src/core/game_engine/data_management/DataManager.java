@@ -26,6 +26,7 @@ public class DataManager {
             // add to list
             new_list.append(serialJson.serializeToJSON());
         }
+        //Player always added
         new_list.append(player.serializeToJSON());
 
         this.game_data.setJSONArray(nameOfList, new_list);

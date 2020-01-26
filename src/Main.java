@@ -31,5 +31,8 @@ public class Main extends PApplet {
     public void keyReleased(){
         golfGame.keyReleased(key);
     }
+    public void keyPressed(){
+        golfGame.keyPressed();
+    }
 
 }

@@ -35,7 +35,7 @@ public class RayCast {
         }else {
             parent.fill(0,150,255);
         }
-        // Player can activate a debug mode for the ray cast
+        // Player can activate a debug mode of the ray cast
         if(isDebugRay){
             parent.stroke(0, 150);
             parent.line(x1,y1,x2,y2);
@@ -43,7 +43,6 @@ public class RayCast {
 
 
     }
-    //Check if a side of the rectangle collides with the line
     boolean lineRect(float x1, float y1, float x2, float y2, float rx, float ry, float rw, float rh) {
 
         // check if the line has hit any of the rectangle's sides
