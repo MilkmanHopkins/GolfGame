@@ -33,6 +33,6 @@ public class AI extends Sprite {
         parent.translate(this.position.x, this.position.y);
         this.parent.ellipse(0, 0, this.size.x, this.size.y);
         parent.popMatrix();
-
+// change
     }
 }
