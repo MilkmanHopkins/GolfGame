@@ -20,10 +20,8 @@ public abstract class GameObject {
 
 
 
-    protected ArrayList<Component> componentList = new ArrayList<>();
-    public GameObject(){
+    public ArrayList<Component> componentList = new ArrayList<>();
 
-    }
     public GameObject(PApplet p){
         this.parent = p;
         this.position = new PVector(0,0,0);

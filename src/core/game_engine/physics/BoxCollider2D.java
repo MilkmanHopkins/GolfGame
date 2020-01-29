@@ -79,6 +79,4 @@ public class BoxCollider2D extends Component {
         }
 
     }
-
-
 }

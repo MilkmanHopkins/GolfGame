@@ -1,0 +1,394 @@
+{"level": [
+  {
+    "itemType": "Goal",
+    "w": 30,
+    "x": 402,
+    "h": 30,
+    "y": 59
+  },
+  {
+    "itemType": "AI",
+    "w": 30,
+    "x": 740,
+    "h": 30,
+    "y": 599
+  },
+  {
+    "itemType": "AI",
+    "w": 30,
+    "x": 62,
+    "h": 30,
+    "y": 599
+  },
+  {
+    "itemType": "AI",
+    "w": 30,
+    "x": 59,
+    "h": 30,
+    "y": 422
+  },
+  {
+    "itemType": "AI",
+    "w": 30,
+    "x": 751,
+    "h": 30,
+    "y": 417
+  },
+  {
+    "itemType": "AI",
+    "w": 30,
+    "x": 756,
+    "h": 30,
+    "y": 279
+  },
+  {
+    "itemType": "AI",
+    "w": 30,
+    "x": 51,
+    "h": 30,
+    "y": 278
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 60,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 100,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 140,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 60,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 20,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 180,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 220,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 300,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 260,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 500,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 540,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 620,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 660,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 740,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 740,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 780,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 700,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 660,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 580,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 540,
+    "h": 40,
+    "y": 660
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 20,
+    "h": 40,
+    "y": 500
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 60,
+    "h": 40,
+    "y": 500
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 140,
+    "h": 40,
+    "y": 500
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 180,
+    "h": 40,
+    "y": 500
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 220,
+    "h": 40,
+    "y": 500
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 100,
+    "h": 40,
+    "y": 500
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 580,
+    "h": 40,
+    "y": 500
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 620,
+    "h": 40,
+    "y": 500
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 660,
+    "h": 40,
+    "y": 500
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 700,
+    "h": 40,
+    "y": 500
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 740,
+    "h": 40,
+    "y": 500
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 780,
+    "h": 40,
+    "y": 500
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 660,
+    "h": 40,
+    "y": 340
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 700,
+    "h": 40,
+    "y": 340
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 740,
+    "h": 40,
+    "y": 340
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 780,
+    "h": 40,
+    "y": 340
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 140,
+    "h": 40,
+    "y": 340
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 100,
+    "h": 40,
+    "y": 340
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 60,
+    "h": 40,
+    "y": 340
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 20,
+    "h": 40,
+    "y": 340
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 300,
+    "h": 40,
+    "y": 20
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 300,
+    "h": 40,
+    "y": 60
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 500,
+    "h": 40,
+    "y": 20
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 500,
+    "h": 40,
+    "y": 60
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 540,
+    "h": 40,
+    "y": 100
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 260,
+    "h": 40,
+    "y": 100
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 420,
+    "h": 40,
+    "y": 140
+  },
+  {
+    "itemType": "Platform",
+    "w": 40,
+    "x": 380,
+    "h": 40,
+    "y": 140
+  },
+  {
+    "itemType": "Player",
+    "w": 30,
+    "x": 400,
+    "h": 30,
+    "y": 750
+  }
+]}
