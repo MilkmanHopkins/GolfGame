@@ -124,15 +124,15 @@ public class GolfGame {
         //RayCast button text
         parent.pushMatrix();
         parent.fill(0);
-        parent.textAlign(parent.CENTER, parent.CENTER);
-        parent.text( "RayCast" + "\n" + "Debugger" ,400, 260);
+        parent.textAlign(parent.CENTER);
+        parent.text( "RayCast" + "\n" + "Debugger" ,400, 250);
         parent.popMatrix();
 
         //Level score text
         parent.pushMatrix();
         parent.fill(0);
         parent.textSize(30);
-        parent.textAlign(parent.CENTER, parent.CENTER);
+        parent.textAlign(parent.CENTER);
         parent.text( "Score on each hole ",400, 600);
         parent.popMatrix();
 
@@ -140,15 +140,15 @@ public class GolfGame {
         parent.pushMatrix();
         parent.fill(0);
         parent.textSize(30);
-        parent.textAlign(parent.CENTER, parent.CENTER);
-        parent.text( "" + printElements(levelScore),320, 500);
+        parent.textAlign(parent.CENTER);
+        parent.text( "" + printElements(levelScore),320, 530);
         parent.popMatrix();
 
         //Track score text
         parent.pushMatrix();
         parent.fill(0);
         parent.textSize(30);
-        parent.textAlign(parent.LEFT, parent.CENTER);
+        parent.textAlign(parent.LEFT);
         parent.text("Track Score = " + sum(levelScore) , 20, 750);
         parent.popMatrix();
 
@@ -156,7 +156,7 @@ public class GolfGame {
         parent.pushMatrix();
         parent.fill(0);
         parent.textSize(40);
-        parent.textAlign(parent.CENTER, parent.CENTER);
+        parent.textAlign(parent.CENTER);
         parent.text( "Select level",400, 200);
         parent.popMatrix();
 
@@ -215,7 +215,7 @@ public class GolfGame {
     }
     // Updates when in GameMode PLAY
     private void playUpdate(){
-        // updates
+        // updates AI and game manager
         levelEditor.updatePlay();
         score.update();
         // how to get back to start
@@ -252,6 +252,4 @@ public class GolfGame {
             }
         }
     }
-
-
 }

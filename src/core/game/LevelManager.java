@@ -17,7 +17,7 @@ public class LevelManager {
     public ArrayList<Sprite> addedSprites;
 
     private GameManager game_manager;
-    PApplet parent;
+    private PApplet parent;
     private Player player;
     private int tileSize = 40;
 

@@ -66,22 +66,12 @@ public class SlingShot extends Component {
         this.speed = speed;
     }
 
-    public void setLength(float length) {
-        this.length = length;
-    }
-
     public float getLength(){
         return length;
-    }
-    public float getSpeed(){
-        return speed;
     }
 
     public PVector getVelocity() {
         return velocity;
     }
 
-    public void setVelocity(PVector velocity) {
-        this.velocity = velocity;
-    }
 }

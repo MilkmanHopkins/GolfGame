@@ -41,7 +41,7 @@ public class LevelEditor {
         }
         return false;
     }
-
+    //Activate a visible RayCast. See what the AI sees
     public void debugRay(){
         if(parent.mouseX > 350 && parent.mouseX < 450 && parent.mouseY > 230 && parent.mouseY < 290){
             if(!isPressed){
@@ -86,7 +86,6 @@ public class LevelEditor {
             level = 9;
         }else if(parent.mouseX > 720 && parent.mouseX < 800 && parent.mouseY > 400 && parent.mouseY < 480){
             level = 10;
-        }else {
         }
     }
 
@@ -99,28 +98,35 @@ public class LevelEditor {
     public void keyPressedEdit(char key){
         switch (key){
             case 'p' :
+                // Add platform
                 levelManager.itemType = "Platform";
                 levelManager.createObject(parent.mouseX, parent.mouseY);
                 break;
             case 'g' :
+                // Add goal
                 levelManager.itemType = "Goal";
                 levelManager.createObject(parent.mouseX, parent.mouseY);
                 break;
             case 's' :
+                // save added objects
                 levelManager.save();
                 break;
             case 'l' :
+                // load objects in the right JSON array. level switches between JSON arrays
                 levelManager.load(level);
                 break;
             case 'a':
+                //Add AI
                 levelManager.itemType = "AI";
                 levelManager.createObject(parent.mouseX, parent.mouseY);
                 break;
             case 'b':
+                // Add player
                 levelManager.itemType = "Player";
                 levelManager.createObject(parent.mouseX, parent.mouseY);
                 break;
             case 'd':
+                // Remove object
                 levelManager.remove();
                 break;
         }
@@ -135,7 +141,7 @@ public class LevelEditor {
             parent.fill(250);
             parent.textSize(13);
             parent.textAlign(parent.LEFT);
-            parent.text("Edit mode: KEYS - Exit 1 | Add Platform P | Delete D | Add Goal G | Save S | Add Player B | Add Enemy A | '1' to Menu '2' to Play", 5, 15);
+            parent.text("Edit mode: KEYS - Add Platform P | Delete D | Add Goal G | Save S | Add Player B | Add Enemy A | '1' to Menu '2' to Play", 5, 15);
 
         }else{
             parent.fill(0,255, 0, 250);
@@ -146,7 +152,7 @@ public class LevelEditor {
         }
         parent.popMatrix();
     }
-
+    // AI movement
     private void AiUpdate(){
         AI enemy;
         for(Sprite sprite : levelManager.getGame_manager().getGame_objects()){
@@ -160,7 +166,7 @@ public class LevelEditor {
             }
         }
     }
-
+    // Use RayCast for all AIs
     private boolean ExternalRayHit(AI ai, ArrayList<Sprite> platformCheck){
         Sprite platform;
         for (Sprite sprite : platformCheck){     //AI slingShot component

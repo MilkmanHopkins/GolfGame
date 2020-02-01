@@ -6,16 +6,15 @@ import core.game_engine.LayerTypes;
 import processing.core.PVector;
 
 public class Bouncy extends Component {
-    public PVector velocity;
+    private PVector velocity;
 
     private boolean isFinished = false;
-    public boolean playerHit = false;
     private SlingShot slingShot;
 
     public boolean isFinished() {
         return isFinished;
     }
-    private float spacer = 0.3f;
+
     private BoxCollider2D boxCollider2D;
 
     public Bouncy(GameObject g, BoxCollider2D b, SlingShot slingShot){
@@ -33,37 +32,37 @@ public class Bouncy extends Component {
                 if(b.gameObject.getLayerType() == LayerTypes.INTERACTABLE){
                     isFinished = true;
                     //System.out.println("GOAL");
-                }else if(b.gameObject.getLayerType() == LayerTypes.PATHFIND) {
-                    playerHit = true;
-
                 }else if (b.gameObject.getLayerType() == LayerTypes.AI){
-                    if (this.gameObject.getClass().getSimpleName().equals("Player")){
-                        //player collides with AI and bounces of it. Moves away from AI
-                        slingShot.Trigger(b.gameObject.position.x, b.gameObject.position.y);
-                        SlingShot collided = null;
-                        //AI slingShot component
-                        for (Component component : b.gameObject.componentList){
-                            if (component.getClass().getSimpleName().equals("SlingShot")){
-                                collided = ((SlingShot) component);
-                            }
-                        }
-                        //AI bounces of player
-                        collided.Trigger(-this.gameObject.position.x, -this.gameObject.position.y);
-                    } else{ setCollisionSide(b); }    // AI bounce of of each other
+                   aiCollision(b);
                     // static or moving layer type
                 }else { setCollisionSide(b); }
             }
             this.boxCollider2D.otherColliders.clear();
         }
     }
-
+    // player collision with AI and AI collision with AI
+    private void aiCollision(BoxCollider2D b){
+        if (this.gameObject.getClass().getSimpleName().equals("Player")){
+            //player collides with AI and bounces of it. Moves away from AI
+            slingShot.Trigger(b.gameObject.position.x, b.gameObject.position.y);
+            SlingShot collided = null;
+            //AI slingShot component
+            for (Component component : b.gameObject.componentList){
+                if (component.getClass().getSimpleName().equals("SlingShot")){
+                    collided = ((SlingShot) component);
+                }
+            }
+            //AI bounces of player
+            collided.Trigger(-this.gameObject.position.x, -this.gameObject.position.y);
+        } else{ setCollisionSide(b); }    // AI bounces off of each other
+    }
+    // Player and AI collision with STATIC objects
     private void setCollisionSide(BoxCollider2D otherBox2D){
-
-
         this.boxCollider2D.findCollisionSide(otherBox2D);
         Point otherTopRight = otherBox2D.getBounds().getTopRight();
         Point otherBottomLeft = otherBox2D.getBounds().getBottomLeft();
         // switch case for the side hit...
+        float spacer = 0.3f;
         switch (this.boxCollider2D.getHitSideV()) {
             case TOP:
                 if (velocity.y < 0) {

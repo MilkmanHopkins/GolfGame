@@ -28,6 +28,4 @@ public class GridCollisionDetection extends Component {
             this.boxCollider2D.otherColliders.clear();
         }
     }
-
-
 }

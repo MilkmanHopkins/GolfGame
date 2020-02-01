@@ -23,7 +23,7 @@ public class DataManager {
         JSONArray new_list = new JSONArray();
 
         for(Serializable serialJson : json_list){
-            // add to list
+            // add object to list
             new_list.append(serialJson.serializeToJSON());
         }
         //Player always added
@@ -38,7 +38,7 @@ public class DataManager {
         }
         return null;
     }
-
+    // Select between different JSON files
     public void setLoad_game_file(int load_game_file) {
         this.load_game_file = "hole"+ load_game_file + ".json";
     }
