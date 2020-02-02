@@ -67,13 +67,10 @@ public class GolfGame {
             case RELOAD:
                 break;
             case PLAY:
-                switch (key){
-                    case '1':
-                        gameMode = GameMode.START;
-                        break;
-                    default:
-                        showTip = false;
-                        break;
+                if (key == '1') {
+                    gameMode = GameMode.START;
+                } else {
+                    showTip = false;
                 }
                 break;
             case EDIT:
@@ -107,7 +104,7 @@ public class GolfGame {
     }
     private void startMenu(){
 
-        //RayCast switch button colour
+        //RayCast button and colour switch
         parent.pushMatrix();
         parent.textSize(20);
         if(levelEditor.getRayCast().isDebugRay()){
