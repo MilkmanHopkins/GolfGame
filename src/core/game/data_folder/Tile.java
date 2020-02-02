@@ -10,7 +10,7 @@ import processing.core.PVector;
 public class Tile extends Sprite {
 
     public PVector size;
-    public GridCollisionDetection gridCollisionDetection;
+    private GridCollisionDetection gridCollisionDetection;
 
     public Tile(PApplet p, float x, float y, float w, float h){
         super(p,x,y,w,h);
@@ -33,7 +33,6 @@ public class Tile extends Sprite {
         }
         parent.rectMode(PApplet.CENTER);
         parent.translate(this.position.x, this.position.y);
-        //parent.fill(190,248,255);
         this.parent.rect(0, 0, this.size.x, this.size.y);
         parent.popMatrix();
     }

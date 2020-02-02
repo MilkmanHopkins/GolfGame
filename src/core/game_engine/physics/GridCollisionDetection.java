@@ -13,7 +13,6 @@ public class GridCollisionDetection extends Component {
     public GridCollisionDetection(GameObject g, BoxCollider2D b) {
         super(g);
         this.boxCollider2D = b;
-
     }
 
     // Used to detect tile collision with platforms
