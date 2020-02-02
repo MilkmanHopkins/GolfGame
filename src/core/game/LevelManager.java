@@ -15,7 +15,6 @@ public class LevelManager {
     public String itemType;
     private DataManager dataManager;
     public ArrayList<Sprite> addedSprites;
-
     private GameManager game_manager;
     private PApplet parent;
     private Player player;
@@ -27,7 +26,6 @@ public class LevelManager {
 
     public LevelManager(PApplet p){
         parent = p;
-
         itemType = "Platform";
         dataManager = new DataManager(this.parent);
         game_manager = new GameManager(this.parent);
@@ -37,7 +35,6 @@ public class LevelManager {
         player = new Player(p, -200, -200, 30, 30);
         game_manager.add_game_object(player);
         addedSprites = new ArrayList<>();
-
 
     }
     // Gives some visual feedback to the player
@@ -54,7 +51,8 @@ public class LevelManager {
     public Player getPlayer() {
         return player;
     }
-
+    // Add object to addedSprites arrayList and gameManager
+    // Objects added in levelEditor
     public Sprite createObject(int x, int y){
         Sprite sprite = null;
         switch(itemType){
@@ -80,17 +78,17 @@ public class LevelManager {
         }
         return sprite;
     }
-    //
+    // Platforms lock in place
     private int grid_placement(int num, int sizeOfGrid)
     {
         int grid = sizeOfGrid * Math.floorDiv(num, sizeOfGrid) + sizeOfGrid / 2;
         return grid;
     }
-
+    // save added spites.
     public void save(){
         dataManager.save(addedSprites, "level", player);
     }
-
+    // Remove added sprites.
     public void remove(){
         for(int i = 0; i < game_manager.getGame_objects().size(); i++){
             Sprite gA = game_manager.getGame_objects().get(i);
@@ -104,9 +102,8 @@ public class LevelManager {
                 addedSprites.remove(i);
             }
         }
-
     }
-
+    // load added sprites. Load objects from JSON array. SideWalls added on every level automatically
     public void load(int level){
         dataManager.setLoad_game_file(level);
         dataManager.load();
