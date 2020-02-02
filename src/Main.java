@@ -6,9 +6,8 @@ import java.awt.*;
 public class Main extends PApplet {
     private int WIDTH = 800, HEIGHT = 800;
     private GolfGame golfGame;
-    public static Color backgroundColor = new Color(104, 255, 161);
+    private static Color backgroundColor = new Color(104, 255, 161);
 
-    private Score score;
     public void settings(){
         size(WIDTH, HEIGHT);
     }

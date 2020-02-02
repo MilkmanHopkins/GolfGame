@@ -11,34 +11,25 @@ public class Player extends Sprite {
     public PVector size;
     //public PVector origPos;     //original position
 
-    public Bouncy bouncy;
+    private Bouncy bouncy;
     public SlingShot slingShot;
-    PVector mouse;
-
-   // Score score;
-    PVector acceleration;
+    private PVector mouse;
     public Player(PApplet p, int x, int y, int w, int h) {
         super(p, x, y, w, h);
         this.parent = p;
         this.size = new PVector(w, h, 0);
         this.layerType = LayerTypes.MOVING;
 
-        //score = new Score(p);
 
         boxCollider2D = new BoxCollider2D(this, w, h);
-
-        //physicsComponent = new PhysicsComponent(this, boxCollider2D);
-        slingShot = new SlingShot(this, this.position, this.bouncy, true);
+        slingShot = new SlingShot(this, this.position, true);
         bouncy = new Bouncy(this, boxCollider2D, slingShot);
-
-
     }
-
+    // Hitting the goal finishes the level
     public boolean finishedLevel(){
         if(bouncy.isFinished()){
             Score.Instance.textFinish();
             return true;
-
         }
         return false;
     }
@@ -46,18 +37,7 @@ public class Player extends Sprite {
     @Override
     public void update() {
         super.update();
-
-
-
-
-
-        //System.out.println(playerInput.length);
-        //System.out.println(physicsComponent.velocity);
-
         mouse = new PVector(parent.mouseX, parent.mouseY);
-//        mouse.limit(2000);
-        //System.out.println(playerInput.speed);
-
         parent.pushMatrix();
         // platform rectangle
         parent.fill(0);
@@ -67,11 +47,11 @@ public class Player extends Sprite {
         //this.parent.rect(0, 0, this.size.x, this.size.y);
         parent.popMatrix();
 
-
+        // Draw a line and set speed to zero
         if(parent.mousePressed) {
             parent.line(mouse.x, mouse.y, this.position.x, this.position.y);
             slingShot.setSpeed(0);       //reset speed
-            //slingShot.setLength(0);    //stop movement
+            //slingShot.setLength(0);    //stop movement optional
         }
     }
 }

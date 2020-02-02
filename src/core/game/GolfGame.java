@@ -32,7 +32,6 @@ public class GolfGame {
                 }
                 break;
             case EDIT:
-                break;
             case RELOAD:
                 break;
         }
@@ -65,6 +64,7 @@ public class GolfGame {
     public void keyReleased(char key){
         switch (gameMode){
             case START:
+            case RELOAD:
                 break;
             case PLAY:
                 switch (key){
@@ -91,21 +91,17 @@ public class GolfGame {
                         break;
                 }
                 break;
-            case RELOAD:
-                break;
         }
     }
     // Show how to get back to start
     public void keyPressed(){
         switch (gameMode){
             case START:
+            case EDIT:
+            case RELOAD:
                 break;
             case PLAY:
                 showTip = true;
-                break;
-            case EDIT:
-                break;
-            case RELOAD:
                 break;
         }
     }
@@ -191,12 +187,12 @@ public class GolfGame {
     }
     //Combined score
     private String printElements(int[] arr){
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < arr.length - 1; i++) {
-            result += "        ";
-            result+= arr[i];
+            result.append("        ");
+            result.append(arr[i]);
         }
-        return result;
+        return result.toString();
     }
     // Level select function
     private void selectLevel(){

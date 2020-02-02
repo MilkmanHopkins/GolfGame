@@ -32,10 +32,7 @@ public class RayCast {
         boolean bottom = lineLine(x1,y1,x2,y2, rX,rY+rh, rX+rw,rY+rh);
         // if ANY of the above are true, the line
         // has hit the rectangle
-        if (left || right || top || bottom) {
-            return true;
-        }
-        return false;
+        return left || right || top || bottom;
     }
 
     private boolean lineLine(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {

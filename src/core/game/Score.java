@@ -6,8 +6,8 @@ import processing.core.PConstants;
 
 public class Score {
     public static Score Instance;
-    PApplet parent;
-    String finishText;
+    private PApplet parent;
+    private String finishText;
     private int strokeNum;
 
     public Score(PApplet p){
@@ -25,9 +25,8 @@ public class Score {
     public void mouseReleased(){
         strokeNum += 1;
     }
-
+    // Text when finishing a level
     public void update(){
-
         if(strokeNum == 1){
             finishText = "Hole in one";
         }else if(strokeNum == 2){
@@ -61,7 +60,6 @@ public class Score {
         parent.pushMatrix();
         parent.textSize(80);
         parent.fill(0);
-        //parent.textAlign(parent.CENTER, 300);
         parent.textAlign(parent.CENTER, 300);
         parent.text(finishText, 400, 500);
         parent.popMatrix();

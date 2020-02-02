@@ -14,7 +14,7 @@ public class SlingShot extends Component {
     private float length;
     private boolean control;
 
-    public SlingShot(Sprite sprite, PVector pos, Bouncy bouncy, boolean control){
+    public SlingShot(Sprite sprite, PVector pos, boolean control){
         super(sprite);
         this.pos = pos;
         this.control = control;

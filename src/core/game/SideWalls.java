@@ -8,7 +8,7 @@ import processing.core.PVector;
 
 
 public class SideWalls extends Sprite {
-    public PVector size;
+    private PVector size;
 
     // Different walls that don't trigger the tile collision
     public SideWalls(PApplet p, int x, int y, int w, int h){
@@ -18,7 +18,6 @@ public class SideWalls extends Sprite {
         layerType = LayerTypes.WALLS;
         this.boxCollider2D = new BoxCollider2D(this, w, h);
     }
-
     @Override
     public void update(){
         super.update();
@@ -30,5 +29,4 @@ public class SideWalls extends Sprite {
         this.parent.rect(0, 0, this.size.x, this.size.y);
         parent.popMatrix();
     }
-
 }

@@ -10,8 +10,8 @@ import core.game_engine.physics.SlingShot;
 
 public class AI extends Sprite {
 
-    public PVector size;
-    public Bouncy bouncy;
+    private PVector size;
+    private Bouncy bouncy;
     public SlingShot slingShot;
 
     public AI(PApplet p, int x, int y, int w, int h){
@@ -20,7 +20,7 @@ public class AI extends Sprite {
         this.size = new PVector(w, h, 0);
         layerType = LayerTypes.AI;
         boxCollider2D = new BoxCollider2D(this, w, h);
-        slingShot = new SlingShot(this, this.position, this.bouncy, false);
+        slingShot = new SlingShot(this, this.position, false);
         bouncy = new Bouncy(this, boxCollider2D, this.slingShot);
     }
     @Override

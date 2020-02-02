@@ -23,6 +23,7 @@ public class GridCollisionDetection extends Component {
             for (BoxCollider2D b : this.boxCollider2D.otherColliders) {
                 if (b.gameObject.getLayerType() == LayerTypes.STATIC) {
                     isGrid = true;
+                    break;
                 }
             }
             this.boxCollider2D.otherColliders.clear();

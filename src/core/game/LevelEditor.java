@@ -13,7 +13,6 @@ public class LevelEditor {
     private LevelManager levelManager;
     public int level;
     public boolean isPressed = false;
-    private boolean missClick = true;
 
     public LevelEditor(PApplet p){
         level = 1;
@@ -59,10 +58,7 @@ public class LevelEditor {
     }
 
     public boolean outOfBounds(){
-        if(parent.mouseX > 0 && parent.mouseX < 800 && parent.mouseY > 400 && parent.mouseY < 480){
-            return false;
-        }
-        return true;
+        return parent.mouseX <= 0 || parent.mouseX >= 800 || parent.mouseY <= 400 || parent.mouseY >= 480;
     }
 
     public void levelSelect(){
