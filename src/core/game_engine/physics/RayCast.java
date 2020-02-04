@@ -23,10 +23,11 @@ public class RayCast {
         // check if the line has hit any of the rectangle's sides
         // uses the Line/Line function below
 
-        // use the left corner of the platform
+       // platform X and Y is in the middle. We have to define the top left corner.
         float rX = rx - (rw / 2);
         float rY = ry - (rh / 2);
-        boolean left =   lineLine(x1,y1,x2,y2, rX,rY,rX, ry+rh);
+        // Each side of the platform
+        boolean left =   lineLine(x1,y1,x2,y2, rX,rY,rX, rY+rh);
         boolean right =  lineLine(x1,y1,x2,y2, rX+rw,rY, rX+rw,rY+rh);
         boolean top =    lineLine(x1,y1,x2,y2, rX,rY, rX+rw,rY);
         boolean bottom = lineLine(x1,y1,x2,y2, rX,rY+rh, rX+rw,rY+rh);
@@ -34,8 +35,8 @@ public class RayCast {
         // has hit the rectangle
         return left || right || top || bottom;
     }
-
-    private boolean lineLine(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
+                            // AI.x,   AI.y,     Player.x, Player.y, Platform.x, Platform.y, platform.width, platform.height
+    private boolean lineLine(float x1, float y1, float x2, float y2, float x3,   float y3,   float x4,       float y4) {
 
         // calculate the direction of the lines
         float v = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1);
@@ -43,12 +44,13 @@ public class RayCast {
         float uB = ((x2-x1)*(y1-y3) - (y2-y1)*(x1-x3)) / v;
         // if uA and uB are between 0-1, lines are colliding
         if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1) {
+            // draw circles on intersection points
             float intersectionX = x1 + (uA * (x2-x1));
             float intersectionY = y1 + (uA * (y2-y1));
             if(isDebugRay){
                 parent.fill(255,0,0);
                 parent.noStroke();
-                parent.ellipse(intersectionX, intersectionY, 20, 20);
+                parent.ellipse(intersectionX, intersectionY, 10, 10);
             }
             return true;
         }
